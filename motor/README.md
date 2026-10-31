@@ -16,7 +16,10 @@ Código para hacer los capítulos sin empezar de cero. Todo es Python (numpy, Pi
   - `render.py` – mezcla audio (voz + efectos + música con ducking) y renderiza 1080x1920 30 fps.
   - `thumb.py` – miniatura vertical. `sheet.py` – hoja de cuadros de prueba.
 
-## Receta rápida
+## Receta completa
+Ver `RECETA.md`: estilo, voz, música, animación y publicación con lo mejor de los caps. 1–3.
+
+## Receta rápida (comandos)
 1. Copiar `cap03/` a `capNN/` y cambiar `timeline.py` (guion), `diagrams.py` y las escenas.
 2. `python3 sheet.py prueba.png 5 20 40` para revisar cuadros.
 3. Generar la voz (carlos, eleven_v4) con `tts_text()`; guardar la toma como `voice.wav` (48 kHz): `ffmpeg -i toma.mp3 -ac 1 -ar 48000 voice.wav`.
