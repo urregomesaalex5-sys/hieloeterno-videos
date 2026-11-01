@@ -1,8 +1,19 @@
 # Receta de la serie HieloEterno · Electrónica animada
 
-Esta receta junta lo mejor de los capítulos 1 (transistor), 2 (molino eólico) y 3 (sensor de inclinación), además de todo lo que Edwin pidió en el camino. Hay que leerla antes de empezar cada capítulo nuevo.
+Esta receta junta lo mejor de los capítulos 1 (transistor), 2 (molino eólico), 3 (sensor de inclinación) y 4 (diodo), además de todo lo que Edwin pidió en el camino. Hay que leerla antes de empezar cada capítulo nuevo.
 
 ---
+
+## 0. Forma de trabajo: la oficina (fija desde el 31 oct 2026)
+Cada capítulo lo hace la **oficina de 7 puestos**, inspirada en el video de @martivegara (ver `oficina/OFICINA.md`):
+
+🔎 Explorador → ✍️ Guionista → **BOTÓN 1 (Edwin aprueba el guion)** → 🎙️ Voz → 🎬 Animador → 🖼️ Miniaturista → 📤 Publicador → **BOTÓN 2 (Edwin aprueba la publicación)** → 📊 Analista, que le avisa al guionista y al explorador.
+
+- Antes de escribir se leen `oficina/notas_para_guionista.md` (lo que dijo el analista) y `oficina/escenas_usadas.md` (lo que no se repite).
+- **Gancho en el segundo 0–1:** el video arranca con el personaje ya en acción. Cada 3–5 s pasa algo nuevo.
+- **Formato ganador** (alarma 10x del analista, 31 oct): "¿Cómo funciona un [componente]?". En TikTok el cap. 1 hizo ~50x lo de los caps. 2 y 3.
+- La miniatura se hace en 4–6 versiones y se usan las 2 mejores (A en Instagram, B en TikTok) para comparar.
+- **Turno de noche:** una tarea programada diaria (6:57 pm) le manda a Edwin por Gmail el informe del analista y del explorador.
 
 ## 1. Tema e idea
 - El tema sale de los **comentarios de la gente** siempre que se pueda. En el cap. 3, @teom074 preguntó "¿La gravedad?". Hay que darle crédito en el video y en la descripción.
@@ -11,7 +22,7 @@ Esta receta junta lo mejor de los capítulos 1 (transistor), 2 (molino eólico) 
 - Cada video debe tener al menos una **demo práctica**: algo que se arma, se prende o se mueve (el LED del molino, el LED del sensor).
 - Cierra con algo que la gente use todos los días, como "tu celular tiene uno". Eso ayuda a que lo compartan.
 - La exactitud técnica se verifica siempre. Si hay que simplificar, que no quede algo falso.
-- Para planear se puede usar un **agente de Sonnet**, que hace el guion, el escena por escena y la publicación. Opus hace el video.
+- Para planear se puede usar un **agente de Sonnet**, que hace el guion, el escena por escena y la publicación. Opus hace el video. Los puestos están en `.claude/agents/`.
 
 ## 2. Guion
 - Debe durar **85–100 s**, con frases cortas.
@@ -35,6 +46,8 @@ Las intros que ya se usaron, para no repetirlas:
 - **Cap. 1:** a oscuras, se asoma curioso desde abajo con un primer plano de la cabeza: "¿Desean aprender electrónica?". Empuja la cámara y aparecen las letras "¡Están en el lugar correcto!". Aplaude para prender la lámpara y construye el piso y las paredes.
 - **Cap. 2:** baja colgando de cabeza desde arriba, dice "¡Holaaa!", se resbala, cae mareado y luego dice "¡Bienvenidos al capítulo dos!".
 - **Cap. 3:** todo flota a oscuras sin gravedad, con el comentario del suscriptor en burbujas. Chasquea los dedos y todo cae en su lugar: bloques, lámpara que parpadea y se prende, y el letrero "¡GRAVEDAD ACTIVADA!".
+
+- **Cap. 4:** con la luz ya prendida, corre y atraviesa una puerta gigante con forma de diodo ▶| (la rayita es una puerta de gato que solo abre hacia un lado). Se devuelve, ¡BONK!, queda aplastado como panqueque y se despega riéndose.
 
 Reglas para la intro:
 - Debe ser **corta** y tener relación con el tema del capítulo.
@@ -130,6 +143,6 @@ Reglas para la intro:
 7. Se anota todo en Notion: una página por capítulo con la idea, las decisiones y los pendientes.
 
 ## 11. Para ahorrar tiempo y tokens
-- Copiar `motor/cap03/` como base para el capítulo nuevo. Se cambian solo `timeline.py` (guion), `diagrams.py` y las escenas de `cap3.py`.
+- Copiar el capítulo más reciente (`motor/cap04/`) como base para el capítulo nuevo. Se cambian solo `timeline.py` (guion), los diagramas (`diodo.py` en el cap. 4) y las escenas (`cap4.py`).
 - No rehacer el personaje, el cuarto, el sonido ni el render: ya funcionan.
 - Al terminar un capítulo, guardar su código en `motor/capNN/`.
