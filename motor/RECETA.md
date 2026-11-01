@@ -97,7 +97,9 @@ Reglas para la intro:
 
 ## 7. Voz (ElevenLabs)
 - Voz **"carlos"** (voice_id zSPJ694fdnzmEKl5n9wI), modelo **eleven_v4**.
-- Todo el guion va en **un solo texto**, con `[long pause]` entre frases y etiquetas de emoción: [curious], [excited], [laughs], [whispers], [surprised], [mischievously], [warmly], [happy].
+- Todo el guion va en **un solo texto**, con `[long pause]` entre frases y etiquetas de emoción: [excited], [laughs], [surprised], [mischievously], [warmly], [happy].
+- 🚫 **Nada de [whispers] ni partes bajitas** (a Edwin no le gusta que hable bajito; en el cap. 4 se regeneraron esas frases). [curious] también sale suave, así que mejor no usarlo. En la mezcla se **iguala el volumen de cada frase** (render.py) para que ninguna quede baja.
+- Si solo falla una frase o dos, se regeneran esas sueltas (~170 créditos) y se pegan en la toma con `splice.py`, en vez de repetir todo.
 - Los usuarios se escriben como se pronuncian: "teo eme cero siete cuatro". En los subtítulos se escriben normal (@teom074).
 - Antes de generar, se usa `estimate_only` para saber cuántos créditos cuesta. **Una sola toma** (~1.700 créditos) para ahorrar.
 - La descarga desde el entorno de Claude está bloqueada. Edwin descarga el mp3 y lo adjunta al chat. A Edwin se le pasan los enlaces de ElevenLabs completos, con `&mode=switchWorkspace&oobCode=…`.
@@ -135,7 +137,7 @@ Reglas para la intro:
    - **TikTok:**
      - con portada, público, isAigc = true
      - TikTok no deja programar el primer comentario, así que la pregunta va en la descripción
-4. El **comentario que pide ideas cambia en cada video**, nunca el mismo. Ejemplos del cap. 3:
+4. El **comentario que pide ideas cambia en cada video**, nunca el mismo. 🚫 **Nada de preguntas bobas o infantiles** (Edwin lo pidió en el cap. 4): primero un **dato interesante extra** que no salió en el video y después una invitación madura a comentar. Ejemplo del cap. 4: "Dato extra: el LED de tu control remoto brilla en infrarrojo… tus ojos no lo ven, pero la cámara frontal del celular sí. ¿Qué componente quieres ver por dentro en el capítulo 5?". Ejemplos del cap. 3:
    - "@teom074 ¡tu pregunta se volvió capítulo! 🙌 Y tú, ¿qué componente te da curiosidad? La mejor idea de los comentarios puede ser el capítulo 4"
    - "Este capítulo salió de un comentario 💬 ¿El siguiente sale del tuyo?"
 5. En la descripción va "🔊 Voz generada con ElevenLabs (elevenlabs.io)". El plan gratis no permite uso comercial: si se monetiza, hay que pagar el plan.

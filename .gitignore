@@ -1,0 +1,5 @@
+__pycache__/
+motor/*/out/
+motor/*/voice*.wav
+motor/*/toma.mp3
+motor/*/arreglo.mp3

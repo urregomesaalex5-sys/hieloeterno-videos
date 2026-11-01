@@ -4,7 +4,8 @@ Código para hacer los capítulos sin empezar de cero. Todo es Python (numpy, Pi
 
 ## Estructura
 - `skin/skin.png` – skin de HieloEterno (mc-heads.net/skin/HieloEterno).
-- `cap03/` – capítulo 3 completo, sirve de plantilla:
+- `cap04/` – capítulo 4 (el diodo), el más reciente: úsalo de plantilla. Trae además `diodo.py` (dibujos), `splice.py` (pegar frases regeneradas) e igualación de volumen por frase en `render.py`.
+- `cap03/` – capítulo 3 completo:
   - `char3d.py` – personaje 3D con la skin: codos, rodillas, estirar/aplastar, brazos de goma, cara de TV (expresiones: normal, feliz, sorpresa, curioso, pensando, guino, mareado, corazon, apagado) y boca de osciloscopio.
   - `scene.py` – cuarto de bloques, lámpara y luz, textos decorados, subtítulos, easing.
   - `sfx.py` – efectos ASMR sintetizados (pasos, bloques, clics, campanita, whoosh...).
@@ -20,7 +21,7 @@ Código para hacer los capítulos sin empezar de cero. Todo es Python (numpy, Pi
 Ver `RECETA.md`: estilo, voz, música, animación y publicación con lo mejor de los caps. 1–3.
 
 ## Receta rápida (comandos)
-1. Copiar `cap03/` a `capNN/` y cambiar `timeline.py` (guion), `diagrams.py` y las escenas.
+1. Copiar `cap04/` (el más reciente) a `capNN/` y cambiar `timeline.py` (guion), `diagrams.py` y las escenas.
 2. `python3 sheet.py prueba.png 5 20 40` para revisar cuadros.
 3. Generar la voz (carlos, eleven_v4) con `tts_text()`; guardar la toma como `voice.wav` (48 kHz): `ffmpeg -i toma.mp3 -ac 1 -ar 48000 voice.wav`.
 4. `python3 segment.py voice.wav` y revisar que haya un silencio largo por frase.
