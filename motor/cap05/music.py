@@ -1,22 +1,22 @@
-# Música original del capítulo 4: "un solo sentido".
-# Arranca de una (gancho) con un groove alegre a 100 BPM; en el ¡BONK! la música
-# se frena de golpe (como disco que se detiene) y vuelve con el título.
-# El motivo de marimba solo SUBE (como la corriente que solo va en un sentido)
-# y cada 2 compases intenta bajar y choca: una nota apagada (bloqueada).
+# Música original del capítulo 5: "carga y descarga".
+# Intro a oscuras: un arpegio de synth que SUBE de tono y de brillo (como el pitido del flash
+# cargándose) y en el ¡FLASH! se suelta en un acorde brillante con cola. Después, un groove
+# eléctrico suave a 96 BPM; cada 2 compases un "pad" se va llenando (carga) y se corta de golpe
+# (descarga) con un pluck que cae.
 import math
 import numpy as np
 from sfx import SR, lp_fast, hp_fast
 
-BPM = 100
+BPM = 96
 BEAT = 60 / BPM
 BAR = 4 * BEAT
 
 def midi(n):
     return 440.0 * 2 ** ((n - 69) / 12)
 
-# acordes (notas MIDI): Dmaj7, Bm7, Gmaj7, A7 -> brillantes y que avanzan
-CHORDS = [[50, 54, 57, 61], [47, 50, 54, 57], [43, 47, 50, 54], [45, 49, 52, 55]]
-ROOTS = [38, 35, 31, 33]
+# acordes: Am9, Fmaj7, C(add9), G6 -> cálido y eléctrico
+CHORDS = [[57, 60, 64, 71], [53, 57, 60, 64], [48, 55, 60, 62], [55, 59, 62, 64]]
+ROOTS = [33, 29, 36, 31]
 
 def _env(n, a, r):
     e = np.ones(n)
@@ -74,6 +74,27 @@ def snare_brush(seed):
     return lp_fast(hp_fast(x, 1500), 6000) * np.exp(-np.arange(n) / SR * 22) * 0.5
 
 
+
+def pluck(f, vel=1.0, dur=0.5):
+    n = int(dur * SR); t = np.arange(n) / SR
+    ph = (f * t) % 1.0
+    y = (2 * ph - 1) * np.exp(-t * 9)
+    y = lp_fast(y, 2600)
+    return y * _env(n, 0.002, 0.05) * vel
+
+def swell(freqs, dur):
+    """pad que se va llenando (carga) y se corta de golpe"""
+    n = int(dur * SR); t = np.arange(n) / SR
+    y = np.zeros(n)
+    for f in freqs:
+        for det in (-0.006, 0.0, 0.007):
+            ph = (f * (1 + det) * t) % 1.0
+            y += (2 * ph - 1) * 0.25
+    y = lp_fast(y, 1200)
+    e = (t / dur) ** 2
+    e[-int(0.02 * SR):] *= np.linspace(1, 0, int(0.02 * SR))
+    return y * e
+
 class Track:
     def __init__(self, dur):
         self.n = int(dur * SR) + SR * 3
@@ -94,45 +115,46 @@ class Track:
 def _groove_bar(tr, t, bar, rng, vol=1.0):
     ci = bar % 4
     ch = CHORDS[ci]
-    for off, v in ((0.0, 1.0), (1.5 * BEAT, 0.6), (2.5 * BEAT, 0.75)):
+    for off, v in ((0.0, 1.0), (1.5 * BEAT, 0.55), (3.0 * BEAT, 0.7)):
         for j, nn in enumerate(ch):
-            tr.add(t + off + j * 0.01, epiano(midi(nn + 12), 1.2, v), 0.055 * vol, -0.25 + 0.15 * j)
-    tr.add(t, pad([midi(n + 12) for n in ch], BAR + 0.6), 0.05 * vol, 0.0)
-    tr.add(t, bass(midi(ROOTS[ci]), BEAT * 1.2), 0.22 * vol, 0.0)
-    tr.add(t + 1.5 * BEAT, bass(midi(ROOTS[ci] + 12), BEAT * 0.5), 0.14 * vol, 0.0)
-    tr.add(t + 2 * BEAT, bass(midi(ROOTS[ci] + 7), BEAT), 0.16 * vol, 0.0)
+            tr.add(t + off + j * 0.012, epiano(midi(nn + 12), 1.1, v), 0.05 * vol, -0.25 + 0.15 * j)
+    tr.add(t, pad([midi(n + 12) for n in ch], BAR + 0.6), 0.04 * vol, 0.0)
+    tr.add(t, bass(midi(ROOTS[ci] + 12), BEAT * 1.2), 0.22 * vol, 0.0)
+    tr.add(t + 1.5 * BEAT, bass(midi(ROOTS[ci] + 12), BEAT * 0.5), 0.13 * vol, 0.0)
+    tr.add(t + 2.5 * BEAT, bass(midi(ROOTS[ci] + 19), BEAT * 0.8), 0.15 * vol, 0.0)
     for b in range(4):
         if b in (0, 2):
-            tr.add(t + b * BEAT, kick(), 0.30 * vol, 0.0)
+            tr.add(t + b * BEAT, kick(), 0.28 * vol, 0.0)
         if b in (1, 3):
-            tr.add(t + b * BEAT, snare_brush(bar * 4 + b), 0.11 * vol, 0.1)
+            tr.add(t + b * BEAT, snare_brush(bar * 4 + b), 0.10 * vol, 0.1)
         for h in (0, 0.5):
-            tr.add(t + (b + h) * BEAT, shaker(bar * 8 + b * 2 + int(h * 2)), 0.06 * vol if h else 0.04 * vol, 0.35)
-    # marimba: escalera que solo sube
-    if bar % 2 == 1:
-        base = t + 0.5 * BEAT
-        up = [ch[0] + 24, ch[1] + 24, ch[2] + 24, ch[3] + 24, ch[0] + 36]
-        for j, nn in enumerate(up):
-            tr.add(base + j * BEAT / 2, marimba(midi(nn), 0.9), 0.10 * vol, 0.3)
-        # intenta bajar... y choca (nota corta y apagada)
-        y = marimba(midi(ch[2] + 24), 0.7)[:int(0.06 * SR)]
-        tr.add(base + 2.75 * BEAT, lp_fast(y, 900), 0.18 * vol, 0.3)
+            tr.add(t + (b + h) * BEAT, shaker(bar * 8 + b * 2 + int(h * 2)), 0.05 * vol if h else 0.035 * vol, 0.35)
+    # carga (2 compases) ... y descarga
+    if bar % 2 == 0:
+        tr.add(t, swell([midi(ch[0] + 24), midi(ch[2] + 24)], 2 * BAR - 0.05), 0.035 * vol, -0.3)
+    else:
+        tz = t + BAR
+        for j, nn in enumerate([ch[3] + 24, ch[2] + 24, ch[1] + 24, ch[0] + 24]):
+            tr.add(tz - 0.4 + j * 0.07, pluck(midi(nn), 0.9), 0.06 * vol, 0.35)
 
 
-def build(dur, t_bonk, t_title, t_end, seed=4):
+def build(dur, t_flash, t_title, t_end, seed=5):
     rng = np.random.default_rng(seed)
     tr = Track(dur)
-    # ---------- arranque inmediato (gancho) hasta el BONK ----------
-    t = 0.0; bar = 0
-    while t < t_bonk:
-        _groove_bar(tr, t, bar, rng, 1.0)
-        t += BAR; bar += 1
-    # ---------- el BONK: la música se frena (barrido hacia abajo) ----------
-    n = int(0.5 * SR); tt = np.arange(n) / SR
-    f = 330 * np.exp(-tt * 4)
-    stop = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 5) * 0.5
-    tr.add(t_bonk, stop, 0.10, 0.0)
-    # ---------- vuelve con el título ----------
+    # ---------- intro: arpegio que sube (carga) ----------
+    t = 0.0; k = 0
+    step = 0.11
+    base = [57, 60, 64, 67, 69, 72]
+    while t < t_flash - 0.03:
+        u = t / max(0.1, t_flash)
+        nn = base[k % len(base)] + 12 * int(u * 2.2)
+        tr.add(t, pluck(midi(nn), 0.5 + 0.5 * u, 0.25), 0.05 + 0.05 * u, -0.3 + 0.6 * (k % 2))
+        t += step * (1 - 0.35 * u); k += 1
+    # ---------- ¡FLASH!: acorde brillante que se suelta ----------
+    for j, nn in enumerate([57, 64, 69, 72, 76, 81]):
+        tr.add(t_flash + j * 0.006, bell(midi(nn + 12), 0.8), 0.05, -0.4 + 0.16 * j)
+        tr.add(t_flash, epiano(midi(nn), 2.5, 0.8), 0.03, 0.0)
+    # ---------- groove desde el título ----------
     t = t_title; bar = 0
     while t < t_end + BAR:
         _groove_bar(tr, t, bar, rng, 1.0)
@@ -140,20 +162,10 @@ def build(dur, t_bonk, t_title, t_end, seed=4):
     st = np.stack([tr.L, tr.R], axis=1)
     tm = np.arange(st.shape[0]) / SR
     g = np.ones_like(tm)
-    g *= np.clip(tm / 0.15, 0, 1)
-    cut = (tm >= t_bonk + 0.04) & (tm < t_title - 0.05)
-    g[cut] = 0.0
-    fade = (tm >= t_bonk) & (tm < t_bonk + 0.04)
-    g[fade] = 1 - (tm[fade] - t_bonk) / 0.04
-    rise = (tm >= t_title - 0.05) & (tm < t_title + 0.6)
-    g[rise] = np.clip((tm[rise] - t_title + 0.05) / 0.65, 0, 1)
+    g *= np.clip(tm / 0.05, 0, 1)
     g *= np.clip((t_end - tm) / 0.5, 0, 1)
     st *= g[:, None]
-    # la barrida del bonk se escucha aunque la música se corte
-    i0 = int(t_bonk * SR)
-    m = min(len(stop), st.shape[0] - i0)
-    st[i0:i0 + m, 0] += stop[:m] * 0.10; st[i0:i0 + m, 1] += stop[:m] * 0.10
     d = int(0.3 * SR)
-    st[d:, 0] += st[:-d, 1] * 0.16
-    st[d:, 1] += st[:-d, 0] * 0.16
+    st[d:, 0] += st[:-d, 1] * 0.18
+    st[d:, 1] += st[:-d, 0] * 0.18
     return st[:int(dur * SR)]

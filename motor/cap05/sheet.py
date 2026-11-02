@@ -1,6 +1,6 @@
 import sys, time
 from PIL import Image
-import cap4 as V
+import cap5 as V
 times = [float(x) for x in sys.argv[2:]]
 out = sys.argv[1]
 ims = []

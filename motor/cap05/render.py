@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Render completo del capítulo 4: audio (voz + efectos ASMR) y video 1080x1920 30 fps.
+# Render completo del capítulo 5: audio (voz + efectos ASMR) y video 1080x1920 30 fps.
 import os
 import sys
 import json
@@ -128,6 +128,32 @@ def build_audio(V, TL):
             snd = np.pad(snd, (0, max(0, len(th) - len(snd)))); snd[:len(th)] += th
         elif name == 'tvoff':
             snd = X.tv_off()
+        elif name == 'whine':      # pitido del flash cargándose (sube de tono)
+            dd = max(0.2, kw.get('dur', 1.5)); n_ = int(SR * dd); tt = np.arange(n_) / SR
+            u = tt / dd
+            f = kw.get('f0', 900) * (kw.get('f1', 5200) / kw.get('f0', 900)) ** (u ** 0.7)
+            ph = 2 * np.pi * np.cumsum(f) / SR
+            snd = (np.sin(ph) + 0.15 * np.sin(2 * ph)) * (0.25 + 0.75 * u) * np.minimum(1, (dd - tt) * 40) * np.minimum(1, tt * 30) * 0.32
+        elif name == 'flash':      # ¡FLASH!: chasquido brillante + destello
+            n_ = int(SR * 0.9); tt = np.arange(n_) / SR
+            nz = np.random.default_rng(sd).standard_normal(n_)
+            snd = X.hp_fast(nz, 3000) * np.exp(-tt * 18) * 0.7
+            snd += np.sin(2 * np.pi * 2400 * tt) * np.exp(-tt * 9) * 0.25
+            th = X.thud(sd, 90) * 0.6; snd[:len(th)] += th[:n_]
+            snd += X.lp_fast(nz, 600) * np.exp(-tt * 4) * 0.25
+        elif name == 'poof':       # ¡PUM! del electrolítico
+            n_ = int(SR * 1.2); tt = np.arange(n_) / SR
+            nz = np.random.default_rng(sd).standard_normal(n_)
+            snd = X.lp_fast(nz, 900) * np.exp(-tt * 5) * 0.9 + X.hp_fast(nz, 2500) * np.exp(-tt * 14) * 0.35
+            th = X.thud(sd, 60); snd[:len(th)] += th[:n_]
+        elif name == 'hiss':       # se infla: siseo que crece
+            dd = max(0.2, kw.get('dur', 1.0)); n_ = int(SR * dd); tt = np.arange(n_) / SR
+            nz = np.random.default_rng(sd).standard_normal(n_)
+            snd = X.hp_fast(nz, 4000) * (tt / dd) ** 1.5 * 0.35
+        elif name == 'chime':      # campanita doble (¡cargado!)
+            snd = X.bell(1568, 1.0) * 0.6
+            b2 = X.bell(2093, 1.0) * 0.5; o = int(0.09 * SR)
+            snd = np.pad(snd, (0, o)); snd[o:o + len(b2)] += b2[:len(snd) - o]
         else:
             print('sonido desconocido', name); continue
         mix.add(t, snd, gain * 0.55, pan)
@@ -160,7 +186,7 @@ def build_audio(V, TL):
 
 def worker(idx, f0, f1, scale):
     sys.path.insert(0, HERE)
-    import cap4 as V
+    import cap5 as V
     env = np.load(os.path.join(OUT, 'mouth_env.npy')) if os.path.exists(os.path.join(OUT, 'mouth_env.npy')) else None
     if env is not None and V.TL.cuts:
         V.set_voice_env(env)
@@ -184,7 +210,7 @@ def main():
     scale = float(sys.argv[1]) if len(sys.argv) > 1 else 1.0
     nproc = int(sys.argv[2]) if len(sys.argv) > 2 else 2
     sys.path.insert(0, HERE)
-    import cap4 as V
+    import cap5 as V
     from timeline import TL
     build_audio(V, TL)
     nf = int(V.T_END * 30)
@@ -199,7 +225,7 @@ def main():
     with open(lst, 'w') as f:
         for i in range(nproc):
             f.write(f"file 'part{i}.mp4'\n")
-    final = os.path.join(OUT, 'cap04_diodo.mp4' if scale >= 1 else 'preview.mp4')
+    final = os.path.join(OUT, 'cap05_condensador.mp4' if scale >= 1 else 'preview.mp4')
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', lst, '-i', os.path.join(OUT, 'audio.wav'),
                     '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', final], check=True)
     print('listo', final)
