@@ -8,6 +8,7 @@ from PIL import Image, ImageDraw, ImageFilter
 import scene as S
 import diagrams as D
 import condensador as K
+import lab as LB
 import char3d as C
 from timeline import TL, PHRASES
 
@@ -28,20 +29,24 @@ T_BONK = T_FLASH                  # (la música usa este nombre)
 T_PRESENT = KW(1, 'aquí') - 0.2   # muestra la cámara con rayos X
 T_TITLE = KW(1, 'Capítulo')
 T_TITLE_FLY = E(1) + 0.3
-T_WALK_HOME = E(1) + 0.1
-T_A_SLAP = E(2) + 0.15
-T_R_SLAP = E(3) + 0.3
-T_B_SLAP = E(8) + 0.35
-T_F_SLAP = E(9) + 0.25
-T_T_SLAP = E(12) + 0.2
-T_S_SLAP = E(13) + 0.3
-T_M_SLAP = E(14) + 0.3
-T_K_SLAP = E(16) + 0.3
-T_END_SNAP = E(19) + 0.5
+T_WALK_HOME = E(2) + 0.1
+T_LOOK = P(2)
+T_SNAP_LAB = KW(2, 'Mejor') - 0.15
+T_FLIP0 = T_SNAP_LAB + 0.08
+T_LAB_DONE = T_FLIP0 + LB.T_TRANS
+T_A_SLAP = E(3) + 0.15
+T_R_SLAP = E(4) + 0.3
+T_B_SLAP = E(9) + 0.35
+T_F_SLAP = E(10) + 0.25
+T_T_SLAP = E(13) + 0.2
+T_S_SLAP = E(14) + 0.3
+T_M_SLAP = E(15) + 0.3
+T_K_SLAP = E(17) + 0.3
+T_END_SNAP = E(20) + 0.5
 T_END = TL.END
-T_POOF = KW(12, 'PUM') - 0.05
-T_FLASH2 = KW(15, 'soltarlos')
-T_SUPER = P(13) + 0.1
+T_POOF = KW(13, 'PUM') - 0.05
+T_FLASH2 = KW(16, 'soltarlos')
+T_SUPER = P(14) + 0.1
 # ======================= utilidades =======================
 EVENTS = []
 def ev(t, name, gain=1.0, pan=0.0, **kw):
@@ -80,22 +85,23 @@ def speaking(t):
 EXPR = [
     (0.0, 'feliz'), (0.5, 'guino'), (T_FLASH - 0.25, 'feliz'), (T_FLASH, 'sorpresa'), (T_FLASH + 0.25, 'mareado'),
     (P(1) + 0.35, 'feliz'), (T_PRESENT + 0.3, 'curioso'), (T_TITLE, 'feliz'),
-    (P(2), 'feliz'), (KW(2, 'Guarda'), 'curioso'), (KW(2, 'golpe'), 'sorpresa'), (E(2), 'feliz'),
-    (P(3), 'pensando'), (KW(3, 'maratonista'), 'feliz'), (KW(3, 'velocista'), 'sorpresa'), (E(3) + 0.2, 'feliz'),
-    (P(4), 'pensando'), (P(5), 'curioso'), (KW(5, 'AISLANTE'), 'feliz'),
-    (P(6), 'curioso'), (KW(6, 'amontonan'), 'feliz'), (KW(6, 'se van'), 'curioso'),
-    (P(7), 'pensando'), (KW(7, 'esperan'), 'guino'), (KW(7, 'CARGADO'), 'feliz'),
-    (P(8), 'curioso'), (KW(8, 'prende'), 'corazon'), (KW(8, 'apaga'), 'curioso'), (E(8), 'feliz'),
-    (P(9), 'curioso'), (KW(9, 'muchísimo'), 'sorpresa'), (KW(9, 'microfaradios'), 'guino'),
-    (P(10), 'feliz'), (KW(10, 'cualquier'), 'guino'),
-    (P(11), 'curioso'), (KW(11, 'tiene lado'), 'pensando'), (KW(11, 'NEGATIVO'), 'feliz'),
-    (P(12), 'pensando'), (KW(12, 'infla'), 'sorpresa'), (T_POOF, 'mareado'), (KW(12, 'cruz'), 'feliz'),
-    (P(13), 'curioso'), (T_SUPER + 0.45, 'sorpresa'), (KW(13, 'miles'), 'corazon'),
-    (P(14), 'curioso'), (KW(14, 'celular'), 'feliz'), (KW(14, 'grano'), 'sorpresa'),
-    (P(15), 'pensando'), (KW(15, '300'), 'curioso'), (T_FLASH2, 'sorpresa'), (T_FLASH2 + 0.5, 'feliz'),
-    (P(16), 'pensando'), (KW(16, 'No la abras'), 'sorpresa'),
-    (P(17), 'guino'), (KW(17, 'chispa'), 'feliz'),
-    (P(18), 'feliz'), (P(19), 'curioso'), (KW(19, 'Nos vemos'), 'guino'),
+    (T_LOOK, 'feliz'), (KW(2, 'cuarto'), 'pensando'), (KW(2, 'Mejor') - 0.1, 'guino'), (KW(2, 'LABORATORIO'), 'feliz'), (T_LAB_DONE - 0.2, 'corazon'),
+    (P(3), 'feliz'), (KW(3, 'Guarda'), 'curioso'), (KW(3, 'golpe'), 'sorpresa'), (E(3), 'feliz'),
+    (P(4), 'pensando'), (KW(4, 'maratonista'), 'feliz'), (KW(4, 'velocista'), 'sorpresa'), (E(4) + 0.2, 'feliz'),
+    (P(5), 'pensando'), (P(6), 'curioso'), (KW(6, 'AISLANTE'), 'feliz'),
+    (P(7), 'curioso'), (KW(7, 'amontonan'), 'feliz'), (KW(7, 'se van'), 'curioso'),
+    (P(8), 'pensando'), (KW(8, 'esperan'), 'guino'), (KW(8, 'CARGADO'), 'feliz'),
+    (P(9), 'curioso'), (KW(9, 'prende'), 'corazon'), (KW(9, 'apaga'), 'curioso'), (E(9), 'feliz'),
+    (P(10), 'curioso'), (KW(10, 'muchísimo'), 'sorpresa'), (KW(10, 'microfaradios'), 'guino'),
+    (P(11), 'feliz'), (KW(11, 'cualquier'), 'guino'),
+    (P(12), 'curioso'), (KW(12, 'tiene lado'), 'pensando'), (KW(12, 'NEGATIVO'), 'feliz'),
+    (P(13), 'pensando'), (KW(13, 'infla'), 'sorpresa'), (T_POOF, 'mareado'), (KW(13, 'cruz'), 'feliz'),
+    (P(14), 'curioso'), (T_SUPER + 0.45, 'sorpresa'), (KW(14, 'miles'), 'corazon'),
+    (P(15), 'curioso'), (KW(15, 'celular'), 'feliz'), (KW(15, 'grano'), 'sorpresa'),
+    (P(16), 'pensando'), (KW(16, '300'), 'curioso'), (T_FLASH2, 'sorpresa'), (T_FLASH2 + 0.5, 'feliz'),
+    (P(17), 'pensando'), (KW(17, 'No la abras'), 'sorpresa'),
+    (P(18), 'guino'), (KW(18, 'chispa'), 'feliz'),
+    (P(19), 'feliz'), (P(20), 'curioso'), (KW(20, 'Nos vemos'), 'guino'),
     (T_END_SNAP + 0.3, 'feliz'), (T_END_SNAP + 0.75, 'apagado'),
 ]
 def expr_at(t):
@@ -216,10 +222,10 @@ WALKS = []
 def setup_walks():
     plan = [
         (T_WALK_HOME, HOME_X, 1.0),
-        (P(5) + 0.3, 330, 0.9), (P(6) + 0.1, HOME_X, 0.9),
-        (P(10) + 0.2, 330, 0.9), (P(11) + 0.1, HOME_X, 0.9),
-        (P(14) + 0.2, 320, 0.9), (P(15) + 0.1, HOME_X, 0.9),
-        (P(19) + 0.1, 300, 0.8),
+        (P(6) + 0.3, 330, 0.9), (P(7) + 0.1, HOME_X, 0.9),
+        (P(11) + 0.2, 330, 0.9), (P(12) + 0.1, HOME_X, 0.9),
+        (P(15) + 0.2, 320, 0.9), (P(16) + 0.1, HOME_X, 0.9),
+        (P(20) + 0.1, 300, 0.8),
     ]
     x = INTRO_X
     for t0, x1, d in plan:
@@ -352,8 +358,8 @@ def intro_pose(p, t, x, yf):
 
 
 def diagram_active(t):
-    return (P(2) + 0.5 <= t < T_R_SLAP) or (P(5) + 0.4 <= t < T_B_SLAP) or (P(9) + 0.3 <= t < T_F_SLAP) \
-        or (P(10) + 0.3 <= t < T_S_SLAP) or (P(14) + 0.4 <= t < T_M_SLAP) or (P(15) + 0.3 <= t < T_K_SLAP)
+    return (P(3) + 0.5 <= t < T_R_SLAP) or (P(6) + 0.4 <= t < T_B_SLAP) or (P(10) + 0.3 <= t < T_F_SLAP) \
+        or (P(11) + 0.3 <= t < T_S_SLAP) or (P(15) + 0.4 <= t < T_M_SLAP) or (P(16) + 0.3 <= t < T_K_SLAP)
 
 
 def scene_gestures(p, t, x, yf):
@@ -372,8 +378,22 @@ def scene_gestures(p, t, x, yf):
                 tp.larm = (1.5, 0, -0.3); tp.lelbow = 1.9; tp.rarm = (1.5, 0, -0.3); tp.relbow = 1.9
                 blend_arm(p, 'l', tp, k); blend_arm(p, 'r', tp, k)
                 p.lean += -0.15 * k
+    # mira el cuarto de piedra: "necesita un cambio" (mano en la barbilla, mira a los lados)
+    a, b = KW(2, 'cuarto') - 0.3, T_SNAP_LAB - 0.1
+    if a <= t < b:
+        k = S.seg(t, a, a + 0.2) * (1 - S.seg(t, b - 0.15, b))
+        tp = p.copy(); tp.rarm = (1.9, 0, -0.2); tp.relbow = 2.0
+        blend_arm(p, 'r', tp, k)
+        sw = math.sin((t - a) * 3.2)
+        p.head = (p.head[0] - 0.12 * k, p.head[1] + 0.7 * k * sw, p.head[2])
+        p.look = (sw * k, -0.3 * k)
+    # chasquido para cambiar el cuarto
+    if T_SNAP_LAB - 0.3 <= t < T_SNAP_LAB + 0.6:
+        u = S.ease_out(S.seg(t, T_SNAP_LAB - 0.3, T_SNAP_LAB - 0.05)) * (1 - S.seg(t, T_SNAP_LAB + 0.3, T_SNAP_LAB + 0.6))
+        tp = p.copy(); tp.rarm = (0.3, 0, 2.6); tp.relbow = 0.5
+        blend_arm(p, 'r', tp, u)
     # "¿Y qué tiene por dentro?": mano en la barbilla
-    a, b = P(4) - 0.1, P(5) + 0.3
+    a, b = P(5) - 0.1, P(6) + 0.3
     if a <= t < b:
         k = S.seg(t, a, a + 0.2) * (1 - S.seg(t, b - 0.2, b))
         tp = p.copy(); tp.rarm = (1.9, 0, -0.2); tp.relbow = 2.0
@@ -381,25 +401,25 @@ def scene_gestures(p, t, x, yf):
         p.head = (p.head[0] - 0.1 * k, p.head[1] + 0.3 * k, p.head[2] + 0.15 * k)
         p.lean += 0.1 * k
     # "así que esperan": brazos cruzados, tamborilea el pie
-    a, b = KW(7, 'esperan') - 0.1, KW(7, 'CARGADO') - 0.1
+    a, b = KW(8, 'esperan') - 0.1, KW(8, 'CARGADO') - 0.1
     if a <= t < b:
         k = S.seg(t, a, a + 0.15) * (1 - S.seg(t, b - 0.15, b))
         tp = p.copy(); tp.larm = (1.2, 0, -0.6); tp.lelbow = 1.7; tp.rarm = (1.2, 0, -0.6); tp.relbow = 1.7
         blend_arm(p, 'l', tp, k); blend_arm(p, 'r', tp, k)
         p.rleg = (0.25 * k * max(0, math.sin((t - a) * 14)), 0, 0)
     # "¡No la abras!": mano de "alto" y niega con la cabeza
-    a = KW(16, 'No la abras') - 0.15
-    if a <= t < E(16) + 0.25:
-        k = S.seg(t, a, a + 0.15) * (1 - S.seg(t, E(16), E(16) + 0.25))
+    a = KW(17, 'No la abras') - 0.15
+    if a <= t < E(17) + 0.25:
+        k = S.seg(t, a, a + 0.15) * (1 - S.seg(t, E(17), E(17) + 0.25))
         tp = p.copy(); tp.larm = (1.55, 0, 0.1); tp.lelbow = 0.1; tp.larm_len = 1.2
         blend_arm(p, 'l', tp, k)
         p.head = (p.head[0], p.head[1] + 0.35 * k * math.sin((t - a) * 14), p.head[2])
     # risa en "con mucha chispa"
-    if P(17) <= t < E(17):
+    if P(18) <= t < E(18):
         sh = math.sin(t * 30) * 0.03
         p.head = (-0.15 + sh, p.head[1], p.head[2])
     # despedida
-    a = KW(19, 'Nos vemos') - 0.2
+    a = KW(20, 'Nos vemos') - 0.2
     if a <= t < T_END_SNAP - 0.35:
         k = S.seg(t, a, a + 0.2)
         tp = p.copy(); tp.larm = (0.1, 0, 2.5 + 0.35 * math.sin((t - a) * 13)); tp.lelbow = 0.4; tp.larm_len = 1.2
@@ -588,11 +608,11 @@ CAPA_C = (700, 575)
 BAR_C = (935, 570)
 
 def setup_A():
-    A['t'] = P(2) + 0.05
+    A['t'] = P(3) + 0.05
     A['th'] = add_throw(A['t'], CAPA_C, lambda t: K.elec_cap(300), 'l', dur=0.45, arc=170, spin=0.6)
-    A['lbl'] = KW(2, 'CAPACITOR') - 0.1
-    A['fill'] = KW(2, 'Guarda') - 0.05
-    A['dump'] = KW(2, 'golpe') - 0.05
+    A['lbl'] = KW(3, 'CAPACITOR') - 0.1
+    A['fill'] = KW(3, 'Guarda') - 0.05
+    A['dump'] = KW(3, 'golpe') - 0.05
     ev(A['lbl'], 'pop', 0.45, panx(CAPA_C[0]))
     ev(A['fill'], 'whine', 0.18, panx(BAR_C[0]), dur=0.9, f0=500, f1=1500)
     ev(A['dump'], 'zap', 0.5, panx(CAPA_C[0])); ev(A['dump'] + 0.02, 'flash', 0.35, panx(CAPA_C[0]))
@@ -641,9 +661,9 @@ LANE1, LANE2 = 470, 745
 R_X0, R_FIN = 440, 1000
 
 def setup_R():
-    R['t'] = P(3) + 0.05
-    R['bat_lbl'] = KW(3, 'maratonista') - 0.1
-    R['go'] = KW(3, 'velocista') - 0.25
+    R['t'] = P(4) + 0.05
+    R['bat_lbl'] = KW(4, 'maratonista') - 0.1
+    R['go'] = KW(4, 'velocista') - 0.25
     ev(R['t'], 'pop', 0.4, panx(R_X0)); ev(R['t'] + 0.12, 'pop', 0.4, panx(R_X0))
     ev(R['bat_lbl'], 'tink', 0.3, panx(600), f=2600)
     ev(R['go'], 'whoosh', 0.7, 0.4)
@@ -691,9 +711,9 @@ def draw_R(cv, t, at=None):
 # ======================= escena Z: ¿qué tiene por dentro? =======================
 Z = {}
 def setup_Z():
-    Z['t'] = P(4) - 0.05
-    Z['zoom0'] = P(5) - 0.35
-    Z['zoom1'] = P(5) + 0.1
+    Z['t'] = P(5) - 0.05
+    Z['zoom0'] = P(6) - 0.35
+    Z['zoom1'] = P(6) + 0.1
     ev(Z['t'], 'pop', 0.45, panx(CAPA_C[0]))
     ev(Z['zoom0'], 'whoosh', 0.5, 0.0)
 
@@ -728,19 +748,19 @@ def plate_img():
     return K.cached('plate', mk)
 
 def setup_B():
-    B['plL'] = KW(5, 'placas') - 0.2
+    B['plL'] = KW(6, 'placas') - 0.2
     B['plR'] = B['plL'] + 0.18
-    B['ins'] = KW(5, 'AISLANTE') - 0.1
-    B['bat'] = P(6) + 0.0
+    B['ins'] = KW(6, 'AISLANTE') - 0.1
+    B['bat'] = P(7) + 0.0
     B['wire0'] = B['bat'] + 0.5
     B['wire1'] = B['wire0'] + 0.5
-    B['flow0'] = KW(6, 'amontonan') - 0.25
-    B['bounce'] = KW(7, 'cruzar') - 0.05
-    B['charged'] = KW(7, 'CARGADO') - 0.1
-    B['remove'] = KW(8, 'Quitas') - 0.05
-    B['led'] = KW(8, 'LED') - 0.35
-    B['on'] = KW(8, 'prende') - 0.05
-    B['dim1'] = E(8) + 0.1
+    B['flow0'] = KW(7, 'amontonan') - 0.25
+    B['bounce'] = KW(8, 'cruzar') - 0.05
+    B['charged'] = KW(8, 'CARGADO') - 0.1
+    B['remove'] = KW(9, 'Quitas') - 0.05
+    B['led'] = KW(9, 'LED') - 0.35
+    B['on'] = KW(9, 'prende') - 0.05
+    B['dim1'] = E(9) + 0.1
     B['thL'] = add_throw(B['plL'], (PLX_L, (PL_Y0 + PL_Y1) / 2), lambda t: plate_img(), 'l', dur=0.4, arc=150, spin=0.3)
     B['thR'] = add_throw(B['plR'], (PLX_R, (PL_Y0 + PL_Y1) / 2), lambda t: plate_img(), 'l', dur=0.4, arc=150, spin=0.3, pitch=1.15)
     B['thB'] = add_throw(B['bat'], BAT_B, lambda t: K.battery_rot(90), 'l', dur=0.45, arc=150, spin=0.5)
@@ -910,10 +930,10 @@ def draw_B(cv, t, at=None):
 Fd = {}
 FAR_C = (700, 520)
 def setup_F():
-    Fd['drop'] = KW(9, 'FARADIOS') - 0.35
+    Fd['drop'] = KW(10, 'FARADIOS') - 0.35
     Fd['land'] = Fd['drop'] + 0.35
-    Fd['big'] = KW(9, 'muchísimo') - 0.1
-    Fd['micro'] = KW(9, 'microfaradios') - 0.2
+    Fd['big'] = KW(10, 'muchísimo') - 0.1
+    Fd['micro'] = KW(10, 'microfaradios') - 0.2
     ev(Fd['drop'], 'whoosh', 0.45, 0.2)
     ev(Fd['land'], 'thud', 0.9, panx(FAR_C[0])); ev(Fd['land'] + 0.02, 'block', 0.6, panx(FAR_C[0]), pitch=0.6)
     SHAKES.append((Fd['land'], 0.35, 14))
@@ -951,15 +971,15 @@ TYPE_C = (720, 610)
 SHELF = (450, 430)
 
 def setup_T():
-    T['cer'] = KW(10, 'CERÁMICO') - 0.3
-    T['flip'] = KW(10, 'cualquier') - 0.1
-    T['elec'] = KW(11, 'ELECTROLÍTICO') - 0.3
+    T['cer'] = KW(11, 'CERÁMICO') - 0.3
+    T['flip'] = KW(11, 'cualquier') - 0.1
+    T['elec'] = KW(12, 'ELECTROLÍTICO') - 0.3
     T['shelf'] = T['elec'] - 0.15
-    T['lado'] = KW(11, 'tiene lado') - 0.05
-    T['neg'] = KW(11, 'franja') - 0.1
-    T['rev'] = KW(12, 'revés') - 0.15
-    T['infla'] = KW(12, 'infla') - 0.1
-    T['cruz'] = KW(12, 'cruz') - 0.15
+    T['lado'] = KW(12, 'tiene lado') - 0.05
+    T['neg'] = KW(12, 'franja') - 0.1
+    T['rev'] = KW(13, 'revés') - 0.15
+    T['infla'] = KW(13, 'infla') - 0.1
+    T['cruz'] = KW(13, 'cruz') - 0.15
     T['thC'] = add_throw(T['cer'], TYPE_C, lambda t: K.ceramic_cap(240), 'l', dur=0.4, arc=160, spin=0.8)
     T['thE'] = add_throw(T['elec'], TYPE_C, lambda t: K.elec_cap(320), 'l', dur=0.45, arc=160, spin=0.6)
     ev(T['flip'], 'whoosh', 0.3, panx(TYPE_C[0])); ev(T['flip'] + 0.45, 'chime', 0.35, panx(TYPE_C[0]))
@@ -1044,7 +1064,7 @@ def draw_T(cv, t, at=None):
 Sp = {}
 def setup_S():
     Sp['land'] = T_SUPER + 0.4
-    Sp['count'] = KW(13, 'miles') - 0.1
+    Sp['count'] = KW(14, 'miles') - 0.1
     ev(T_SUPER, 'whoosh', 0.5, 0.2)
     ev(Sp['land'], 'thud', 1.0, panx(TYPE_C[0])); ev(Sp['land'] + 0.03, 'thump2', 0.8, panx(TYPE_C[0]))
     SHAKES.append((Sp['land'], 0.5, 22))
@@ -1081,10 +1101,10 @@ def draw_S(cv, t, at=None):
 M = {}
 PH_C = (720, 625)
 def setup_M():
-    M['q'] = P(14) + 0.05
-    M['phone'] = KW(14, 'celular') - 0.25
-    M['many'] = KW(14, 'cientos') - 0.05
-    M['sand'] = KW(14, 'grano') - 0.3
+    M['q'] = P(15) + 0.05
+    M['phone'] = KW(15, 'celular') - 0.25
+    M['many'] = KW(15, 'cientos') - 0.05
+    M['sand'] = KW(15, 'grano') - 0.3
     ev(M['q'], 'pop', 0.4, panx(700))
     M['th'] = add_throw(M['phone'], PH_C, lambda t: K.phone_board(0.0), 'l', dur=0.45, arc=160, spin=0.4)
     for k in range(10):
@@ -1119,10 +1139,10 @@ Kc = {}
 CAM2 = (700, 450)
 VM_C = (700, 740)
 def setup_K():
-    Kc['cam'] = P(15) + 0.0
-    Kc['ch0'] = KW(15, 'cargándose') - 0.1
+    Kc['cam'] = P(16) + 0.0
+    Kc['ch0'] = KW(16, 'cargándose') - 0.1
     Kc['ch1'] = T_FLASH2 - 0.15
-    Kc['warn'] = P(16) + 0.05
+    Kc['warn'] = P(17) + 0.05
     Kc['th'] = add_throw(Kc['cam'], CAM2, lambda t: K.camera_img(0.0, 1.0, 1.0), 'l', dur=0.45, arc=160, spin=0.4)
     ev(Kc['ch0'], 'whine', 0.45, panx(CAM2[0]), dur=Kc['ch1'] - Kc['ch0'] + 0.1)
     ev(T_FLASH2, 'flash', 1.0, panx(CAM2[0]))
@@ -1167,7 +1187,7 @@ def draw_K(cv, t, at=None):
 
 # ======================= chispa del remate =======================
 def draw_spark(cv, t):
-    a, b = KW(17, 'chispa') - 0.2, E(17) + 0.4
+    a, b = KW(18, 'chispa') - 0.2, E(18) + 0.4
     if not (a <= t < b):
         return
     hx, hy = hand_pos(t, 'l')
@@ -1181,9 +1201,9 @@ Fin = {}
 BTN = {'like': (770, 600), 'sub': (770, 735), 'follow': (770, 870)}
 
 def setup_Fin():
-    Fin['btn_in'] = P(18) - 0.6
-    Fin['hit'] = {'like': KW(18, 'me gusta'), 'sub': KW(18, 'suscríbete'), 'follow': KW(18, 'sígueme')}
-    Fin['q'] = P(19) + 0.1
+    Fin['btn_in'] = P(19) - 0.6
+    Fin['hit'] = {'like': KW(19, 'me gusta'), 'sub': KW(19, 'suscríbete'), 'follow': KW(19, 'sígueme')}
+    Fin['q'] = P(20) + 0.1
     for i, k in enumerate(('like', 'sub', 'follow')):
         ev(Fin['btn_in'] + i * 0.1, 'pop', 0.35, 0.4)
         th = Fin['hit'][k]
@@ -1228,6 +1248,16 @@ def schedule_intro_sfx():
     ev(T_PRESENT, 'whoosh', 0.4, 0.3)
     ev(KW(1, 'adentro') - 0.15, 'zap', 0.3, 0.3)
     ev(T_TITLE - 0.2, 'pop', 0.45, 0.3)
+    # cambio a laboratorio
+    ev(T_SNAP_LAB, 'snap', 0.9, panx(INTRO_X))
+    ev(T_FLIP0, 'whoosh', 0.5, 0.0)
+    for k in range(14):
+        ev(T_FLIP0 + 0.04 + k * 0.055, 'block', 0.22, -0.8 + 0.12 * k, pitch=0.9 + 0.04 * k)
+    ev(T_FLIP0 + 0.75 + 0.45, 'thud', 0.6, -0.5); ev(T_FLIP0 + 0.75 + 0.45, 'block', 0.5, -0.5, pitch=0.8)
+    ev(T_FLIP0 + 0.87 + 0.45, 'thud', 0.6, 0.0)
+    for k in range(4):
+        ev(T_FLIP0 + 1.07 + 0.35 + k * 0.07, 'pop', 0.3, -0.2 + 0.2 * k, f0=500 + 150 * k, f1=1300)
+    ev(T_LAB_DONE, 'chime', 0.45, 0.0)
 
 
 def setup_all():
@@ -1246,6 +1276,7 @@ def setup_all():
     setup_Fin()
     react = [
         (T_TITLE - 0.05, 0.7, 110, 'spin'),               # título
+        (KW(2, 'LABORATORIO') - 0.05, 0.5, 80, 'up'),     # ¡laboratorio!
         (A['dump'] + 0.05, 0.4, 50, 'up'),                # ¡de golpe!
         (R['go'] + 0.3, 0.45, 60, 'up'),                  # ¡velocista!
         (B['charged'] + 0.05, 0.45, 60, 'up'),            # ¡cargado!
@@ -1265,26 +1296,33 @@ def setup_all():
             SPINS.append((t0, d)); ev(t0, 'whoosh', 0.3, 0.0)
         if kind:
             REACT_ARMS.append((t0, d, kind))
-    POINTS.append((KW(17, 'chispa') - 0.2, E(17) + 0.3, 'l', lambda t: (HOME_X + 170, 760)))
+    POINTS.append((KW(18, 'chispa') - 0.2, E(18) + 0.3, 'l', lambda t: (HOME_X + 170, 760)))
 
 setup_all()
 
 _bg = {}
-def bg_img(light):
-    if 'lit' not in _bg:
-        _bg['lit'] = S.lit_room()
-        _bg['lit_np'] = np.array(_bg['lit'], np.float32)
+def bg_at(t, light):
+    if 'stone' not in _bg:
+        _bg['stone'] = S.lit_room().convert('RGBA')
+        _bg['stone_np'] = np.array(_bg['stone'].convert('RGB'), np.float32)
+    if t < T_FLIP0:
+        base, arr = _bg['stone'], _bg['stone_np']
+    elif t < T_LAB_DONE:
+        return LB.transition(_bg['stone'], t, T_FLIP0, (INTRO_X, 760))
+    else:
+        L = LB.layers(); base, arr = L['full'], L['full_np']
     if light >= 0.999:
-        return _bg['lit'].convert('RGBA')
+        return base.copy()
     if light <= 0.001:
         return Image.new('RGBA', (W, H), (0, 0, 0, 255))
-    a = (_bg['lit_np'] * light).astype(np.uint8)
-    return Image.fromarray(a, 'RGB').convert('RGBA')
+    return Image.fromarray((arr * light).astype(np.uint8), 'RGB').convert('RGBA')
 
 
 def render_frame(t):
     pose, x, yf, light, glow = char_state(t)
-    cv = bg_img(light)
+    cv = bg_at(t, light)
+    if t >= T_LAB_DONE:
+        LB.draw_anim(cv, t, light)
     sw = 0.0
     if t >= T_END_SNAP:
         sw = 0.04 * math.sin((t - T_END_SNAP) * 5) * math.exp(-(t - T_END_SNAP))

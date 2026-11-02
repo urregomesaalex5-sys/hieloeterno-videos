@@ -12,6 +12,9 @@ PHRASES = [
     # 1 · rayos X a la cámara · título
     ("[laughs] El secreto está aquí adentro. ¡Capítulo cinco: el condensador!",
      "El secreto está aquí adentro. / ¡Capítulo 5: el CONDENSADOR!", 0.9),
+    # 2 · mira el cuarto: ¡necesita un cambio! → laboratorio
+    ("[laughs] Mmm... este cuarto necesita un cambio. [excited] ¡Mejor, un laboratorio!",
+     "Mmm... este cuarto necesita un cambio. / ¡Mejor, un LABORATORIO!", 0.6),
     # 2 · qué es
     ("También le dicen capacitor. Guarda energía eléctrica... y la suelta de golpe.",
      "También le dicen CAPACITOR. / Guarda energía eléctrica... / y la suelta de golpe", 0.45),

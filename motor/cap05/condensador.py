@@ -330,3 +330,7 @@ def spark(r=46):
         l.poly(pts, fill=(255, 240, 120, 255))
         return l.done()
     return cached(('spark', r), mk)
+
+
+# ---------------- diseño realista (reemplaza los de arriba) ----------------
+from caps_real import elec_cap, ceramic_cap, supercap  # noqa: E402,F811
