@@ -97,7 +97,7 @@ class Timeline:
             else:
                 d = _est(sub)
             self.T.append(t); self.D.append(d)
-            t += d + gap
+            t += d + (gap * 0.7 if i < len(PHRASES) - 1 else gap)
         self.END = t
         self.words = {}
         if cuts:

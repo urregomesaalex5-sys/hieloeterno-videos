@@ -671,7 +671,7 @@ def draw_R(cv, t, at=None):
     S.paste_center(cv, K.runner_battery(t * 1.6), bx, LANE1 - bob, scale=1.0 * k)
     if t >= R['bat_lbl']:
         a = S.ease_back(S.seg(t, R['bat_lbl'], R['bat_lbl'] + 0.3))
-        S.paste_center(cv, D.label('PILA: MARATONISTA', 30, fill=(255, 210, 150)), 740, LANE1 - 120, scale=a)
+        S.paste_center(cv, D.label('PILA: MARATONISTA', 30, fill=(255, 210, 150)), 810, LANE1 + 10, scale=a)
     # condensador velocista: ¡zuum!
     if t < R['go']:
         cx = R_X0
@@ -685,7 +685,7 @@ def draw_R(cv, t, at=None):
         S.paste_center(cv, K.elec_cap(200), cx, LANE2, sx=1 + 0.25 * j, sy=1 - 0.2 * j, angle=-0.25 * (1 - u) if u < 1 else 0)
         if u >= 1:
             a = S.ease_back(S.seg(t, R['go'] + 0.3, R['go'] + 0.6))
-            S.paste_center(cv, D.label('¡VELOCISTA!', 34, fill=(255, 240, 120)), 760, LANE2 - 150, scale=a)
+            S.paste_center(cv, D.label('¡VELOCISTA!', 34, fill=(255, 240, 120)), 800, LANE2 + 150, scale=a)
 
 
 # ======================= escena Z: ¿qué tiene por dentro? =======================
