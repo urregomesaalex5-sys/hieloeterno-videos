@@ -48,6 +48,7 @@ Las intros que ya se usaron, para no repetirlas:
 - **Cap. 3:** todo flota a oscuras sin gravedad, con el comentario del suscriptor en burbujas. Chasquea los dedos y todo cae en su lugar: bloques, lámpara que parpadea y se prende, y el letrero "¡GRAVEDAD ACTIVADA!".
 
 - **Cap. 4:** con la luz ya prendida, corre y atraviesa una puerta gigante con forma de diodo ▶| (la rayita es una puerta de gato que solo abre hacia un lado). Se devuelve, ¡BONK!, queda aplastado como panqueque y se despega riéndose.
+- **Cap. 5:** a oscuras con el pitido del flash cargándose y ¡FLASH! que prende el cuarto; después del título mira el cuarto, dice "necesita un cambio", chasquea y todo se vuelve laboratorio.
 
 Reglas para la intro:
 - Debe ser **corta** y tener relación con el tema del capítulo.
@@ -148,3 +149,9 @@ Reglas para la intro:
 - Copiar el capítulo más reciente (`motor/cap04/`) como base para el capítulo nuevo. Se cambian solo `timeline.py` (guion), los diagramas (`diodo.py` en el cap. 4) y las escenas (`cap4.py`).
 - No rehacer el personaje, el cuarto, el sonido ni el render: ya funcionan.
 - Al terminar un capítulo, guardar su código en `motor/capNN/`.
+
+## 12. Aprendido en el cap. 5
+- Edwin pidió condensadores **realistas** (caps_real.py: cilindro sombreado, forro impreso, tapa con cruz) y un **laboratorio** en vez del cuarto de piedra (lab.py). Para los próximos capítulos: dibujar los componentes con aspecto real, no planos.
+- Si los silencios de `[long pause]` salen casi iguales a las pausas internas, usar `segment_dp.py` (reparte las frases a velocidad pareja).
+- Para agregar una frase nueva después de grabar: generarla sola (~80 créditos) y pegarla con `insert_phrase.py`.
+- Las pausas entre frases se recortan al 70 % en timeline.py.
