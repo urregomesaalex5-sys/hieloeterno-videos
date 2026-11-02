@@ -1,6 +1,6 @@
 # Cap. 5 · El condensador (borrador, 1 nov 2026)
 
-**Estado:** esperando el BOTÓN 1 (OK de Edwin al guion).
+**Estado:** programado el 2 nov 2026 (IG 9:55 am · YouTube 3:55 pm · TikTok 5:55 pm). Portadas: A en TikTok, B en Instagram. Se agregó la frase del laboratorio y el escenario lab.
 **Formato:** "¿Cómo funciona un CONDENSADOR?" (alarma 10x: componente puro + título-pregunta).
 **Duración estimada:** ~95–100 s · 20 frases · ~1.770 caracteres de voz.
 
