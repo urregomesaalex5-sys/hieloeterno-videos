@@ -608,7 +608,7 @@ def draw_comments(cv, t):
         S.paste_center(cv, M.comment_shot(path, 900), 540, COM_Y[k], scale=a * (1 - 0.6 * out), alpha=1 - out)
     if t >= T_X2:
         a = S.ease_back(S.seg(t, T_X2, T_X2 + 0.3)) * (1 - out)
-        S.paste_center(cv, D.label('×2', 56, fill=(255, 230, 120), bg=(200, 40, 70, 235)), 960, 600, scale=a,
+        S.paste_center(cv, D.label('×2', 56, fill=(255, 230, 120), bg=(200, 40, 70, 235)), 975, 705, scale=a,
                        angle=-0.15 + 0.05 * math.sin(t * 9))
 
 def schedule_intro_sfx():
