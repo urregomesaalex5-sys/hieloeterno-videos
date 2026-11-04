@@ -30,6 +30,9 @@ T_PRESS = 0.12                      # pulsa ON
 T_POP = max(0.5, P(0) - 0.25)       # ¡pop! (el LED se quema)
 T_BONK = T_POP                      # (la música usa este nombre)
 T_TITLE = T_POP                     # el groove arranca con el ¡pop! (el título ya está en pantalla)
+T_SNAP = E(0) + 0.12              # chasquea: se construye el laboratorio
+T_BUILD = T_SNAP + 0.08
+T_LIT = T_BUILD + 1.2               # se prende la lámpara
 T_TITLE_FLY = P(1) + 0.15
 T_WALK_HOME = P(1) + 0.2
 T_C_SLAP = E(5) + 0.25              # se rompe el circuito
@@ -251,15 +254,15 @@ def char_state(t):
         p.lean += 0.08 * k
     si = speaking(t)
     if si is not None and walking is None and t > T_WALK_HOME + 0.8:
+        # en reposo los brazos casi no se mueven: solo un vaivén suave al hablar
         env = mouth_at(t)
-        g1 = math.sin(t * 3.4 + si * 1.7); g2 = math.sin(t * 2.6 + si * 0.9 + 1.3)
-        amp = 0.45 + 0.45 * env
-        p.larm = (0.55 + 0.55 * g1 * amp, 0.15 * g2, 0.25 + 0.35 * max(0, g2) * amp); p.lelbow = 0.9 + 0.5 * g1
-        p.rarm = (0.45 + 0.5 * g2 * amp, -0.15 * g1, 0.25 + 0.35 * max(0, g1) * amp); p.relbow = 0.9 + 0.5 * g2
-        p.head = (p.head[0] + 0.14 * env * math.sin(t * 9), p.head[1] + 0.1 * g2, p.head[2] + 0.07 * g1)
-        yf -= 3 * env
-        p.sy *= 1 + 0.015 * env
-        p.lean += 0.06 * g1
+        g1 = math.sin(t * 1.5 + si * 1.7); g2 = math.sin(t * 1.2 + si * 0.9 + 1.3)
+        p.larm = (0.14 + 0.05 * g1 * env, 0, 0.13 + 0.03 * env); p.lelbow = 0.3 + 0.08 * g1
+        p.rarm = (0.14 + 0.05 * g2 * env, 0, 0.13 + 0.03 * env); p.relbow = 0.3 + 0.08 * g2
+        p.head = (p.head[0] + 0.1 * env * math.sin(t * 8), p.head[1] + 0.08 * g2, p.head[2] + 0.05 * g1)
+        yf -= 2 * env
+        p.sy *= 1 + 0.01 * env
+        p.lean += 0.03 * g1
     if t < T_WALK_HOME:
         intro_pose(p, t, x, yf)
     if walking is not None:
@@ -316,6 +319,25 @@ def scene_gestures(p, t, x, yf):
             elif kind == 'thumbs':
                 tp.larm = (1.4, 0, 0.6); tp.lelbow = 1.6; tp.rarm = (1.4, 0, 0.6); tp.relbow = 1.6
                 blend_arm(p, 'l', tp, k); blend_arm(p, 'r', tp, k)
+    # gestos para explicar: solo en momentos clave, y vuelven al reposo
+    for t0, d, kind in GEST:
+        if t0 - 0.2 <= t <= t0 + d + 0.25:
+            k = S.ease_out(S.seg(t, t0 - 0.2, t0)) * (1 - S.ease_io(S.seg(t, t0 + d, t0 + d + 0.25)))
+            tp = p.copy()
+            if kind == 'present':      # mano abierta hacia el diagrama
+                tp.larm = (0.85, 0, 0.95); tp.lelbow = 0.35
+                blend_arm(p, 'l', tp, k)
+                p.head = (p.head[0], p.head[1] + 0.35 * k, p.head[2])
+            elif kind == 'open':       # los dos brazos abiertos
+                tp.larm = (0.6, 0, 0.85); tp.lelbow = 0.3; tp.rarm = (0.6, 0, 0.85); tp.relbow = 0.3
+                blend_arm(p, 'l', tp, k); blend_arm(p, 'r', tp, k)
+            elif kind == 'count':      # mano frente al pecho, como quien cuenta
+                tp.rarm = (1.25, 0, 0.25); tp.relbow = 1.5
+                blend_arm(p, 'r', tp, k)
+            elif kind == 'chin':       # mano en la barbilla
+                tp.rarm = (1.9, 0, -0.2); tp.relbow = 2.0
+                blend_arm(p, 'r', tp, k)
+                p.head = (p.head[0] - 0.08 * k, p.head[1] + 0.2 * k, p.head[2] + 0.1 * k)
     # muestra la resistencia (mano izquierda arriba) en "te enseño a salvarlo"
     a, b = SHOW_T0, SHOW_T1
     if a - 0.2 <= t < b + 0.2:
@@ -338,6 +360,11 @@ def scene_gestures(p, t, x, yf):
         tp = p.copy(); tp.larm = (1.5 + rub, 0, 0.35); tp.lelbow = 0.5; tp.rarm = (1.5 - rub, 0, 0.35); tp.relbow = 0.5
         blend_arm(p, 'l', tp, k); blend_arm(p, 'r', tp, k)
         p.lean += 0.1 * k
+    # chasquido que construye el laboratorio
+    if T_SNAP - 0.3 <= t < T_SNAP + 0.6:
+        u = S.ease_out(S.seg(t, T_SNAP - 0.3, T_SNAP - 0.05)) * (1 - S.seg(t, T_SNAP + 0.3, T_SNAP + 0.6))
+        tp = p.copy(); tp.rarm = (0.3, 0, 2.6); tp.relbow = 0.5
+        blend_arm(p, 'r', tp, u)
     # despedida
     a = KW(12, 'Respóndeme') + 0.2
     if a <= t < T_END_SNAP - 0.35:
@@ -351,7 +378,7 @@ def scene_gestures(p, t, x, yf):
 
 
 def light_at(t):
-    if t > T_END_SNAP + 0.05:
+    if t < T_LIT or t > T_END_SNAP + 0.05:
         return 0.0
     return 1.0
 
@@ -531,7 +558,7 @@ def setup_C():
     SHAKES.append((Cc['stamp'], 0.2, 6))
     add_slap(T_C_SLAP)
 
-SHOW_T0 = P(1) - 0.05
+SHOW_T0 = P(1) + 0.1
 SHOW_T1 = P(2) + 0.1
 
 def led_state(t):
@@ -929,7 +956,6 @@ def setup_F():
     for k in range(2):
         ev(Fn['pat'] + 0.12 + k * 0.22, 'tink', 0.3, panx(RES_C[0]), f=2000)
     ev(Fn['rip'], 'pop', 0.4, panx(SHELF_LED[0]))
-    POINTS.append((Fn['pat'], Fn['pat'] + 0.55, 'l', lambda t: (RES_C[0], RES_C[1] - 30 + 14 * math.sin((t - Fn['pat']) * 22))))
     add_slap(T_F_SLAP)
 
 def draw_F(cv, t, at=None):
@@ -1006,8 +1032,25 @@ def draw_Fin(cv, t):
             S.paste_center(cv, D.label('EN LOS COMENTARIOS', 22, fill=(255, 255, 255)), Q_C[0], Q_C[1] + 212, scale=a)
 
 
+GEST = [
+    (KW(2, 'LIMITA') + 0.3, 0.9, 'present'),
+    (KW(3, 'Fuente'), 1.0, 'present'),
+    (P(4) + 0.1, 1.1, 'count'),
+    (KW(6, 'chocan'), 1.1, 'present'),
+    (KW(6, 'calor'), 0.7, 'open'),
+    (P(8) + 0.1, 1.0, 'present'),
+    (KW(8, 'tolerancia'), 0.8, 'count'),
+    (P(9) + 0.05, 1.6, 'present'),
+    (KW(10, 'celular'), 0.9, 'open'),
+    (KW(10, 'RESISTENCIAS'), 0.8, 'present'),
+    (KW(11, 'LIMITA'), 1.0, 'present'),
+    (KW(12, 'Cuánto'), 0.8, 'chin'),
+]
+
+
 def setup_all():
     setup_walks()
+    schedule_build_sfx()
     setup_title()
     setup_C()
     setup_J()
@@ -1037,10 +1080,61 @@ def setup_all():
         if kind:
             REACT_ARMS.append((t0, d, kind))
 
-setup_all()
+
+def build_bg(t):
+    """construcción del laboratorio: piso primero, luego las paredes fila por fila de abajo hacia arriba,
+    y al final caen los muebles"""
+    L = LB.layers()
+    bare = L['bare']
+    out = Image.new('RGBA', (W, H), (0, 0, 0, 255))
+    rows = [S.FLOOR_T] + S.WALL_ROWS[::-1]
+    for ri, y in enumerate(rows):
+        hgt = S.BLK if y != S.FLOOR_T else S.FLOOR_B - S.FLOOR_T
+        for c in range(S.NCOL):
+            x = S.X0 + c * S.BLK
+            ta = T_BUILD + ri * 0.05 + abs(x + S.BLK / 2 - INTRO_X) / 3500
+            p = (t - ta) / 0.14
+            if p <= 0:
+                continue
+            tile = bare.crop((x, y, x + S.BLK, y + hgt))
+            if p >= 1:
+                out.paste(tile, (x, y))
+                continue
+            sc = max(0.05, S.ease_back(p))
+            tw, th = max(1, int(S.BLK * sc)), max(1, int(hgt * sc))
+            out.paste(tile.resize((tw, th)), (x + (S.BLK - tw) // 2, y + (hgt - th) // 2 - int(30 * (1 - p))))
+    tf = T_BUILD + 0.85
+    for name, delay, dy0 in (('shelf', 0.0, -420), ('counter', 0.08, 300), ('items', 0.18, -160)):
+        u = (t - tf - delay) / 0.3
+        if u <= 0:
+            continue
+        lay = L[name]
+        if u >= 1:
+            out.alpha_composite(lay)
+            continue
+        v = S.bounce_out(u)
+        tmp = Image.new('RGBA', (W, H), (0, 0, 0, 0))
+        tmp.paste(lay, (0, int(dy0 * (1 - v))))
+        out.alpha_composite(tmp)
+    return out
+
+
+def schedule_build_sfx():
+    ev(T_SNAP, 'snap', 0.9, panx(INTRO_X))
+    ev(T_BUILD, 'whoosh', 0.45, 0.0)
+    for ri in range(1 + len(S.WALL_ROWS)):
+        ev(T_BUILD + ri * 0.05 + 0.08, 'block', 0.26, -0.6 + 1.2 * ((ri * 7) % 10) / 10, pitch=0.85 + 0.03 * ri)
+    tf = T_BUILD + 0.85
+    ev(tf + 0.3, 'thud', 0.6, -0.5); ev(tf + 0.38, 'thud', 0.6, 0.1); ev(tf + 0.48, 'block', 0.4, 0.3, pitch=1.2)
+    ev(T_LIT, 'switch', 0.55, 0.0); ev(T_LIT + 0.05, 'chime', 0.4, 0.0)
+
 
 _bg = {}
 def bg_at(t, light):
+    if t < T_LIT:
+        if t < T_BUILD:
+            return Image.new('RGBA', (W, H), (0, 0, 0, 255))
+        return build_bg(t)
     L = LB.layers()
     base, arr = L['full'], L['full_np']
     if light >= 0.999:
@@ -1050,14 +1144,21 @@ def bg_at(t, light):
     return Image.fromarray((arr * light).astype(np.uint8), 'RGB').convert('RGBA')
 
 
+setup_all()
+
+
 def render_frame(t):
     pose, x, yf, light, glow = char_state(t)
     cv = bg_at(t, light)
-    LB.draw_anim(cv, t, light)
+    if t < T_BUILD:
+        # a oscuras: solo se ve lo que alumbra la pantalla de la fuente (y el LED)
+        S.glow_fast(cv, SUP[0], SUP[1], 260, (60, 160, 90), 0.35)
+    if t >= T_LIT:
+        LB.draw_anim(cv, t, light)
     sw = 0.0
     if t >= T_END_SNAP:
         sw = 0.04 * math.sin((t - T_END_SNAP) * 5) * math.exp(-(t - T_END_SNAP))
-    for t0 in (T_POP, Tt['land']):
+    for t0 in (T_LIT, Tt['land']):
         if t0 <= t < t0 + 1.4:
             sw += 0.06 * math.sin((t - t0) * 7) * math.exp(-(t - t0) * 2.5)
     S.draw_lamp(cv, on=light, swing=sw)
@@ -1082,14 +1183,17 @@ def render_frame(t):
         d.ellipse([x - sh_w, S.FLOOR_Y - 14, x + sh_w, S.FLOOR_Y + 12], fill=(0, 0, 0, int(110 * light * max(0.3, 1 - h / 500))))
     # ----- personaje -----
     char_light = 0.32 + 0.68 * light if t < T_END_SNAP + 1.3 else 0.32
+    if t < T_LIT:
+        char_light = 0.5 if t < T_BUILD else 0.5 + 0.4 * S.seg(t, T_BUILD, T_LIT)
+        if T_POP <= t < T_POP + 0.4:
+            char_light = max(char_light, 1.0 - (t - T_POP) / 0.4 * 0.5)
     CH.render(cv, pose, dict(scale=S.SCALE, ox=x, oy=yf, view_yaw=0.12 * math.sin(t * 0.2)), light=char_light, t=t)
     draw_show_res(cv, t)
     draw_Fin(cv, t)
     # destello del ¡pop!
-    if T_POP <= t < T_POP + 0.25:
-        u = (t - T_POP) / 0.25
-        wh = Image.new('RGBA', (W, H), (255, 245, 230, int(110 * (1 - u) ** 2)))
-        cv.alpha_composite(wh)
+    if T_POP <= t < T_POP + 0.35:
+        u = (t - T_POP) / 0.35
+        S.glow_fast(cv, LED_C[0], LED_C[1] - 70, 520, (255, 235, 200), 0.9 * (1 - u) ** 2)
     sub, si = TL.subtitle_at(t)
     if sub and t < T_END_SNAP + 0.2:
         S.draw_subtitle(cv, sub)
