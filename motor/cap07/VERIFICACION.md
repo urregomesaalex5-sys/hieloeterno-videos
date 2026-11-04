@@ -1,0 +1,55 @@
+# Verificación técnica · Cap. 7 · La resistencia
+
+Regla: cero información falsa. Cada frase del guion sale de esta tabla (columna "Respaldo" de GUION.md = códigos H#).
+Tipos: **HECHO** (verificado en fuente), **ANALOGÍA** (se dice como analogía y se anota su límite), **PENDIENTE** (no entra al guion).
+Investigación hecha el 4 nov 2026. Las páginas se abrieron y se leyeron; lo que una página NO decía se anota abajo como límite.
+
+## A. Afirmaciones del guion
+| # | Afirmación | Tipo | Fuente | Nota / límite |
+|---|---|---|---|---|
+| H1 | Una resistencia es un componente pasivo de dos terminales que aporta resistencia eléctrica; se usa para reducir/limitar la corriente y dividir voltajes | HECHO | Wikipedia "Resistor" https://en.wikipedia.org/wiki/Resistor | Del guion solo se dice "limita la corriente". Dividir voltaje queda fuera a propósito. |
+| H2 | Un LED no es lineal: bajo su voltaje directo casi no pasa corriente y, arriba, un cambio pequeño de voltaje produce un cambio grande de corriente; si la corriente supera el máximo del datasheet, "el LED puede destruirse" | HECHO | Make: "When to use a resistor with an LED" https://makezine.com/article/technology/when-to-use-a-resistor-with-an-led · OpenStax Univ. Physics 2, 9.4 (el diodo es un dispositivo no óhmico) https://openstax.org/books/university-physics-volume-2/pages/9-4-ohms-law | OpenStax no menciona LED, solo diodo (el LED es un diodo). En pantalla: "una fuente de laboratorio" que da corriente de sobra. **No se dice** que cualquier pila lo queme (una pila de botón limita sola la corriente: PENDIENTE, no usar). |
+| H3 | LED rojo típico: caída directa de unos 2,0 V (rango 1,8–2,2 V) y corriente máxima nominal de 20 mA | HECHO | SparkFun, "LED - Basic Red 5mm" https://www.sparkfun.com/led-basic-red-5mm.html · Make (1,7–2,2 V) | Es un LED rojo de 5 mm genérico; cada LED tiene su hoja de datos. El guion dice "unos dos". |
+| H4 | Con LED y resistencia en serie, los voltajes se reparten y suman el de la fuente: 5 V − 2 V = 3 V para la resistencia | HECHO | Wikipedia "Kirchhoff's circuit laws" (ley de voltajes: la suma de las diferencias de potencial en un lazo cerrado es cero) https://en.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws | Cálculo directo. Se dice "unos" porque el 2 V del LED es típico, no exacto. |
+| H5 | 330 Ω es un valor estándar (series E12 y E24: 3,3 × 10 = 330) | HECHO | Wikipedia "E series of preferred numbers" https://en.wikipedia.org/wiki/E_series_of_preferred_numbers | Wikipedia remite a IEC 60063. |
+| H6 | Ley de Ohm V = I·R: para una resistencia ideal el voltaje es proporcional a la corriente, y la corriente es I = V ÷ R. Ejemplo de la fuente: 300 Ω con 12 V pasa 0,04 A | HECHO | OpenStax Univ. Physics 2, 9.4 https://openstax.org/books/university-physics-volume-2/pages/9-4-ohms-law · Wikipedia "Resistor" | La ley se aplica a la resistencia (material óhmico), **no al LED**, que es no óhmico. En pantalla se aclara con un rótulo. |
+| H7 | I = 3 V ÷ 330 Ω = 0,00909 A ≈ 9 mA, por debajo de los 20 mA máximos del LED | HECHO (cálculo de H3 + H6) | Cálculo propio: 3 ÷ 330 = 0,0090909 | "Unos nueve miliamperios" es redondeo correcto. Con tolerancia de ±5 %: de 8,7 a 9,6 mA. |
+| H8 | La corriente que entra a la resistencia es igual a la que sale (conservación de la carga); la resistencia no "consume" corriente, disipa potencia como calor | HECHO | Wikipedia "Kirchhoff's circuit laws" (ley de corrientes, extensión de la conservación de la carga) · Apuntes de física, Missouri S&T, Lec21: "Current is the same at all points in a current-carrying wire", resistencias en serie = misma corriente https://web.mst.edu/vojtaa/phys2145/handouts/Lec21_2145.pdf | Vale en corriente continua y régimen estable, con la resistencia en serie en un solo camino. Es el circuito del guion. |
+| H9 | Una resistencia convierte potencia eléctrica en calor (efecto Joule) | HECHO | Wikipedia "Resistor" (los resistores convierten potencia eléctrica en calor) · Wikipedia "Joule heating" https://en.wikipedia.org/wiki/Joule_heating | — |
+| H10 | Mecanismo: el campo acelera a los portadores, estos chocan con las vibraciones de la red y le transfieren energía; esas oscilaciones de los iones son la energía térmica que se mide. "Las vibraciones de los átomos de la red dificultan el movimiento de los electrones" | HECHO (**modelo simplificado**) | Wikipedia "Joule heating" · OpenStax Univ. Physics 2, 9.3 https://openstax.org/books/university-physics-volume-2/pages/9-3-resistivity-and-resistance · Lifeder "Efecto Joule" https://www.lifeder.com/efecto-joule/ | "Chocar con átomos" es el modelo clásico (Drude). En la realidad los electrones se dispersan por las vibraciones de la red (fonones) y por impurezas/defectos; no son bolitas duras. En pantalla va el rótulo "MODELO SIMPLIFICADO". El guion no dice "los electrones frenan": dice que "pasan energía". |
+| H11 | En una tostadora, el elemento calefactor es un alambre de resistencia (generalmente nicromo) que se calienta hasta el rojo | HECHO | Wikipedia "Nichrome" https://en.wikipedia.org/wiki/Nichrome ("heating elements in devices like toasters"; el alambre de nicromo se usa a temperaturas de rojo vivo) · Wikipedia "Toaster" https://en.wikipedia.org/wiki/Toaster ("often made of nichrome wire") | Ninguna fuente dice "todas las tostadoras": el guion dice "en una tostadora" y no nombra el material. Ducha eléctrica: sin fuente propia, **PENDIENTE, no se usa**. |
+| H12 | Código de colores IEC 60062, 4 bandas: 1.ª cifra, 2.ª cifra, multiplicador (potencia de 10) y tolerancia. Dígitos: negro 0, marrón 1, rojo 2, naranja 3… Multiplicador: marrón ×10, rojo ×100. Tolerancia: dorado ±5 %, plateado ±10 %, marrón ±1 % | HECHO | Wikipedia "Electronic color code" (cita IEC 60062:2016) https://en.wikipedia.org/wiki/Electronic_color_code | Falta confirmar con el texto de la norma IEC 60062 (de pago). La tabla coincide con la práctica de fabricantes. Un resistor de 4 bandas se lee desde el lado opuesto a la banda de tolerancia. |
+| H13 | Naranja-naranja-marrón-dorado = 3, 3, ×10, ±5 % = 330 Ω ±5 % | HECHO | Aplicación de H12 (misma fuente) | Rango real posible: 330 × 0,95 = 313,5 Ω a 330 × 1,05 = 346,5 Ω (cálculo propio). |
+| H14 | Tolerancia = cuánto puede alejarse el valor real del nominal (ej.: 220 Ω al 5 % queda entre 209 y 231 Ω) | HECHO | Raspberry Pi Magazine "220, 330… 470: why we have the resistor values we do" https://magazine.raspberrypi.com/articles/220-330-470-why-we-have-te-resistor-values-we-do · Vishay CRCW, hoja de datos: tolerancias ±5 % y ±1 % https://www.vishay.com/docs/20035/dcrcwe3.pdf | — |
+| H15 | Los celulares llevan cientos de componentes pasivos (300–600 en gama baja/media, 800–1.000 en gama alta) | HECHO | Electronic Design, "One of the Smallest Components in Smartphones Shrinks" https://www.electronicdesign.com/technologies/analog/article/21808959/one-of-the-smallest-components-in-smartphones-shrinks | El artículo no dice cuántos de esos pasivos son resistencias. El guion dice "cientos de componentes pasivos, y entre ellos hay resistencias", no da un número de resistencias. El conteo es de la época del artículo y varía con el modelo. |
+| H16 | Entre los componentes de celulares hay resistencias de chip (montaje superficial) | HECHO | KOA, serie RK73B (usos: "mobile phones", "portable application-mobile phones and digital cameras") https://www.electronicspecifier.com/passives/rk73b1f-koa-enhance-resistance-range-01005-thick-film-chip-resistors | La fuente habla de la serie, no de un modelo de celular. No se dice "tu celular usa X". |
+| H17 | Reto del final: marrón-negro-rojo-dorado = 1, 0, ×100, ±5 % = 1.000 Ω (1 kΩ) ±5 % | HECHO | Aplicación de H12 | La respuesta NO se dice en el video; se confirma en los comentarios. |
+| H18 | Existen resistencias de chip de 0,4 mm × 0,2 mm (tamaño 01005) | HECHO | Vishay CRCW01005 e3 https://en.sekorm.com/doc/377174.html · KOA: el RK73B1F "es 55 % más pequeño que el tamaño 0201" | Solo para rótulo en pantalla: "Existen resistencias de 0,4 × 0,2 mm". No se afirma que las de un celular concreto midan eso. |
+
+## B. Dato extra del comentario fijado (no sale en el video)
+| # | Afirmación | Tipo | Fuente | Nota / límite |
+|---|---|---|---|---|
+| D1 | En un alambre de cobre de 2 mm de diámetro con 1 A, los electrones se desplazan a ~23 µm/s (velocidad de deriva) | HECHO | Wikipedia "Drift velocity" https://en.wikipedia.org/wiki/Drift_velocity | Comprobado con el cálculo v = I ÷ (n·q·A), con n(Cu) = 8,5×10²⁸ e⁻/m³ (misma fuente), q = 1,6×10⁻¹⁹ C, A = 3,14×10⁻⁶ m²: 2,3×10⁻⁵ m/s. |
+| D2 | 23 µm/s × 3.600 s ≈ 83 mm ≈ "unos 8 centímetros por hora" | HECHO (cálculo derivado de D1) | Aritmética: 23×10⁻⁶ × 3600 = 0,083 m | Se escribe "unos 8 cm por hora" y se aclara que es para ese alambre y esa corriente. |
+| D3 | Las señales eléctricas viajan como ondas electromagnéticas guiadas por el conductor a entre 50 % y 99 % de la velocidad de la luz; los electrones se mueven mucho más despacio | HECHO | Wikipedia "Speed of electricity" https://en.wikipedia.org/wiki/Speed_of_electricity · Wikipedia "Velocity factor" https://en.wikipedia.org/wiki/Velocity_factor | **Discrepancia anotada:** esa página da un ejemplo de "0,1 cm/s para 1 A/mm²", pero el cálculo con n del cobre da ~0,07 mm/s. No se usa su cifra; se usa la de "Drift velocity", que sí coincide. |
+
+## C. Analogías
+No se usa ninguna analogía en la voz de este capítulo (evita arrastrar los límites). Si el animador quiere una de apoyo visual:
+| Analogía | Límite que hay que rotular |
+|---|---|
+| Tubo estrecho de agua = resistencia | El agua que entra en el tubo es la misma que sale (bien), pero un tubo no convierte la energía en calor de la misma forma, y no explica por qué el LED necesita justo 2 V. No usar con "se gasta el agua". |
+
+## D. PENDIENTE / prohibido (no entra al guion)
+- "La resistencia gasta/consume corriente" → **FALSO** (H8). Lo que se transforma es energía.
+- "Los electrones van rapidísimo por el cable" → falso para su velocidad de deriva (D1); la señal sí es rápida (D3).
+- "La resistencia frena la electricidad como un freno que la gasta" → no usar.
+- "Una pila siempre quema un LED sin resistencia" → no verificado (una pila pequeña puede limitar sola la corriente). Solo se dice de una "fuente" de laboratorio.
+- "Tu celular usa N resistencias de tal tipo" → sin fuente (depende del modelo).
+- Ducha eléctrica y secador de pelo: sin fuente confirmada para este guion (el secador usa elementos de nicromo o cerámicos PTC según el modelo).
+- Cifras de resistencias SMD por celular o por modelo: PENDIENTE.
+- Texto de la norma IEC 60062 en sí: PENDIENTE de leer (paga); se respalda con Wikipedia, que la cita, y con hojas de datos de fabricantes.
+
+## E. Cálculos del guion (para que el animador no se equivoque)
+- V_resistencia = 5 V − 2 V = 3 V · I = 3 ÷ 330 = 9,09 mA · P = 3 V × 9,09 mA ≈ 27 mW (una resistencia de ¼ W sobra; **no se dice en el video**).
+- Código naranja-naranja-marrón-dorado: 33 × 10 = 330 Ω; rango ±5 %: 313,5–346,5 Ω.
+- Reto marrón-negro-rojo-dorado: 10 × 100 = 1.000 Ω ±5 % (950–1.050 Ω).
