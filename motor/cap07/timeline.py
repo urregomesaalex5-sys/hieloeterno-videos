@@ -45,10 +45,10 @@ PHRASES = [
      "Una resistencia LIMITA cuánta corriente pasa... / ¡y por eso salvó a mi LED!", 0.7),
     # 12 · CTA + reto del comentario (H17) + cierre
     ("[excited] ¡Dale me gusta, suscríbete y sígueme! [mischievously] Reto: marrón, negro, rojo, dorado. ¿Cuánto vale? ¡Respóndeme!",
-     "¡Dale me gusta, suscríbete y sígueme! / Reto: marrón, negro, rojo, dorado. / ¿Cuánto vale? ¡Respóndeme en los comentarios!", 3.2),
+     "¡Dale me gusta, suscríbete y sígueme! / Reto: marrón, negro, rojo, dorado. / ¿Cuánto vale? ¡Respóndeme!", 3.2),
 ]
 
-START = 0.25
+START = 0.8
 
 
 def tts_text():
