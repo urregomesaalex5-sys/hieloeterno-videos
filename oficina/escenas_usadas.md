@@ -34,3 +34,11 @@
 - Caps. 1–4: cuarto de piedra con piso de madera.
 - **Cap. 5:** laboratorio estilo Minecraft (lab.py): azulejos verde azulado, franja amarilla y negra, estantes con frascos y microscopio, mesón blanco con granito, vasos con burbujas, osciloscopio, bola de plasma y piso de cuadros. Se puede seguir usando.
 - **Cap. 6:** por dentro del celular (pcb.py): placa verde con pistas de cobre, pads, chips SoC/UFS/LPDDR y piso de chip con patitas; pulsos cian que corren por las pistas.
+
+## Cap. 7 · La resistencia (4 nov 2026)
+- **Intro:** a oscuras con el título en pantalla desde el cuadro 0; pulsa ON en una fuente de 5 V, el LED conectado directo se sobrecarga y revienta (¡pop!, chispa, hilo de humo, queda negro y agrietado). Mientras pregunta "¿Cómo funciona una RESISTENCIA?" chasquea y el LABORATORIO SE CONSTRUYE de abajo hacia arriba (piso, paredes fila por fila, caen estante/mesón/objetos) y se prende la lámpara.
+- **Chistes visuales:** el LED quemado sale volando al estante y al final le aparece "R.I.P."; sello "NO SE CONSUME" sobre el texto tachado "se gasta la corriente"; se calienta las manos en la tostadora.
+- **Demos:** circuito con corriente en cuadritos (5 V = 2 V LED + 3 V resistencia, barra de corriente con línea de 20 mA); red de átomos que se calienta + termómetro (efecto Joule, "modelo simplificado"); tostadora con alambre al rojo; código de colores con números que vuelan de cada franja; placa de celular con lupa sobre una resistencia de chip.
+- **Cierre:** reto con resistencia marrón-negro-rojo-dorado "¿CUÁNTO VALE?".
+- **Música:** zumbido que sube hasta el ¡pop! y groove a 98 BPM, Fmaj7–Em7–Dm9–Cmaj7 (acordes que bajan), marimba 5-4-3-2 y pad "de filamento".
+- **Brazos (pedido de Edwin):** en reposo casi quietos; gestos solo al explicar (presentar, abrir, contar, barbilla). Nada de brazo de goma estirado lejos.
