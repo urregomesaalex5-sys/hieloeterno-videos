@@ -30,7 +30,7 @@ T_PRESS = 0.12                      # pulsa ON
 T_POP = max(0.5, P(0) - 0.25)       # ¡pop! (el LED se quema)
 T_BONK = T_POP                      # (la música usa este nombre)
 T_TITLE = T_POP                     # el groove arranca con el ¡pop! (el título ya está en pantalla)
-T_SNAP = E(0) + 0.12              # chasquea: se construye el laboratorio
+T_SNAP = KW(0, 'Cómo') - 0.2      # chasquea: se construye el laboratorio mientras pregunta
 T_BUILD = T_SNAP + 0.08
 T_LIT = T_BUILD + 1.2               # se prende la lámpara
 T_TITLE_FLY = P(1) + 0.15
@@ -699,8 +699,8 @@ def shelf_led_pos(t):
     if u < 1:
         x = LED_C[0] + (SHELF_LED[0] - LED_C[0]) * u
         y = LED_C[1] + (SHELF_LED[1] - LED_C[1]) * u - 260 * math.sin(math.pi * u)
-        return x, y, 1 - 0.55 * u, u * 4
-    return SHELF_LED[0], SHELF_LED[1], 0.45, 0.0
+        return x, y, 1 - 0.4 * u, u * 4
+    return SHELF_LED[0], SHELF_LED[1], 0.6, 0.0
 
 def draw_shelf_led(cv, t):
     st = shelf_led_pos(t)
@@ -711,7 +711,7 @@ def draw_shelf_led(cv, t):
     if t >= Fn['rip']:
         a = S.ease_back(S.seg(t, Fn['rip'], Fn['rip'] + 0.35)) * (1 - S.seg(t, T_F_SLAP - 0.2, T_F_SLAP))
         if a > 0:
-            S.paste_center(cv, D.label('R.I.P.', 26, fill=(220, 220, 230)), x, y - 85, scale=a)
+            S.paste_center(cv, D.label('R.I.P.', 34, fill=(230, 230, 240)), x, y - 110, scale=a)
             if t < T_F_SLAP:
                 R.smoke(cv, x, y - 30, 0.8 + (t - Fn['rip']), a=0.35 * a)
 
@@ -776,7 +776,7 @@ def draw_J(cv, t, at=None):
 Tt = {}
 TOA_C = (720, 610)
 def setup_T():
-    Tt['drop'] = KW(7, 'TOSTADORA') - 0.4
+    Tt['drop'] = P(7) + 0.35
     Tt['land'] = Tt['drop'] + 0.35
     Tt['glow0'] = KW(7, 'alambre') - 0.1
     Tt['glow1'] = KW(7, 'rojo') + 0.1
@@ -1061,7 +1061,7 @@ def setup_all():
     setup_Fin()
     react = [
         (T_POP + 0.02, 0.4, 55, None),                     # ¡pop!
-        (KW(0, 'RESISTENCIA') - 0.05, 0.7, 100, 'spin'),   # título
+        (T_LIT + 0.02, 0.45, 70, 'up'),                    # ¡laboratorio listo!
         (Cc['on'] + 0.05, 0.45, 70, 'thumbs'),             # ¡prende!
         (Cc['stack'] + 0.05, 0.4, 50, 'up'),               # ¡le tocan tres!
         (Cc['ma'] + 0.05, 0.4, 45, None),                  # 9 mA

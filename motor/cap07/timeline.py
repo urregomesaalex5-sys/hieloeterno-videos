@@ -9,7 +9,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PHRASES = [
     # 0 · gancho (segundo 0): LED directo a la fuente, se quema; título en pantalla (H2, H3)
     ("[surprised] ¡Se quemó el LED! [excited] ¿Cómo funciona una RESISTENCIA?",
-     "¡Se quemó el LED! / ¿Cómo funciona una RESISTENCIA?", 2.0),
+     "¡Se quemó el LED! / ¿Cómo funciona una RESISTENCIA?", 0.6),
     # 1 · promesa (se cumple en la frase 8-9: código de colores; y la 11: salvó al LED)
     ("[mischievously] Te enseño a salvarlo... y a leer su código de colores.",
      "Te enseño a salvarlo... / y a leer su CÓDIGO DE COLORES", 0.6),
