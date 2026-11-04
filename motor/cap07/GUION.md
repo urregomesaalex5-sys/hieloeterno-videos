@@ -1,6 +1,7 @@
 # Cap. 7 · La resistencia (borrador, 4 nov 2026)
 
-**Estado:** borrador del ✍️ guionista, a la espera del BOTÓN 1 (OK de Edwin). No se ha generado voz ni publicado nada.
+**Estado:** guion aprobado (BOTÓN 1) y publicación aprobada (BOTÓN 2) por Edwin el 4 nov 2026. Portadas elegidas: A (Instagram) y C (TikTok).
+**Estado anterior:** borrador del ✍️ guionista, a la espera del BOTÓN 1 (OK de Edwin). No se ha generado voz ni publicado nada.
 **Tema:** propuesto por el 🔎 explorador (backlog, línea 6). **No salió de un comentario de un seguidor: no hay crédito a nadie.**
 **Título (en pantalla y primera frase):** "¿Cómo funciona una RESISTENCIA?"
 **Duración estimada:** ≈ 75 s en total (≈ 72 s de voz + 3 s de cierre con el reto en pantalla; margen real 72–78 s). 13 frases · 177 palabras · 1.347 caracteres de voz (≈ 1.350 créditos, menos que el cap. 6).
