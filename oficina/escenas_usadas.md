@@ -42,3 +42,11 @@
 - **Cierre:** reto con resistencia marrón-negro-rojo-dorado "¿CUÁNTO VALE?".
 - **Música:** zumbido que sube hasta el ¡pop! y groove a 98 BPM, Fmaj7–Em7–Dm9–Cmaj7 (acordes que bajan), marimba 5-4-3-2 y pad "de filamento".
 - **Brazos (pedido de Edwin):** en reposo casi quietos; gestos solo al explicar (presentar, abrir, contar, barbilla). Nada de brazo de goma estirado lejos.
+
+## Cap. 8 · El inductor (5 nov 2026)
+- **Intro:** laboratorio YA prendido, título en pantalla; circuito real (pila AA 1,5 V → interruptor de cuchilla → bobina con núcleo de hierro, neón en paralelo). Él tiene la mano en el mango y lo abre de un tirón a los 0,45 s: chispa azul en el contacto + neón naranja; se echa para atrás.
+- **Demos:** alambre recto que se ENROLLA y se vuelve bobina; líneas de campo que crecen + brújula que cae y gira; sello "SE OPONE AL CAMBIO"; dos ramas con bombillos (sin bobina prende de una, con bobina sube despacio) + gráfica corriente-tiempo + flecha "voltaje inducido en contra"; repetición del neón con el campo que se encoge y barras "PILA 1,5 V vs PICO"; carrito pesado en rieles (analogía de la inercia: arranca y frena despacio); placa con lupa sobre un inductor de chip que se abre por dentro; carga inalámbrica en corte (base con bobina, campo que cambia de sentido, celular que baja y se carga).
+- **Crédito:** burbuja del comentario real de @vpalep ("Inductores :D") con corazón y manos al pecho.
+- **Cierre:** reto con dos bobinas N y 2N vueltas "¿×2 o ×4?".
+- **Música:** zumbido de bobina de 100 Hz hasta el ¡zing! del neón; groove a 94 BPM (Gm9–Ebmaj7–Cm9–D7sus4) con pad de ataque lento que se queda sonando tras el cambio y bajo con portamento.
+- **Gestos nuevos:** mano de "alto" en "se opone", empujar el carrito, manos al pecho en "¡Gracias!".
