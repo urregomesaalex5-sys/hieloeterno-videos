@@ -103,7 +103,12 @@ Reglas para la intro:
 - Si solo falla una frase o dos, se regeneran esas sueltas (~170 créditos) y se pegan en la toma con `splice.py`, en vez de repetir todo.
 - Los usuarios se escriben como se pronuncian: "teo eme cero siete cuatro". En los subtítulos se escriben normal (@teom074).
 - Antes de generar, se usa `estimate_only` para saber cuántos créditos cuesta. **Una sola toma** (~1.700 créditos) para ahorrar.
-- La descarga desde el entorno de Claude está bloqueada. Edwin descarga el mp3 y lo adjunta al chat. A Edwin se le pasan los enlaces de ElevenLabs completos, con `&mode=switchWorkspace&oobCode=…`.
+- **Voz automática (desde el cap. 8, 4 nov 2026):** la oficina genera la voz sola con el conector de ElevenLabs (`creative_generate_speech`, carlos, eleven_v4, `generations_count: 1`).
+  - La descarga directa desde la nube de Claude está bloqueada (403 del proxy), y la terminal del PC de Edwin también.
+  - Lo que SÍ funciona: abrir el `content_url` en el **navegador integrado** de la app de escritorio (en el PC de Edwin) y, con JavaScript, `fetch` → blob → `<a download>`: el mp3 queda en **Descargas** del PC de Edwin (`cap0X-<tema>-voz.mp3`).
+  - Luego `device_stage_files` lo trae a la nube y se convierte a `voice.wav` (48 kHz mono) → `segment.py` → `render.py`.
+  - El video final y las portadas se copian a la carpeta **Serie 1** del Escritorio de Edwin.
+  - Edwin autorizó acceso a Descargas y a Serie 1 (4 nov 2026). A Edwin igual se le pasa el enlace de ElevenLabs completo, con `&mode=switchWorkspace&oobCode=…`.
 - `segment.py` corta las frases por silencios largos (los de `[long pause]`) y ancla los tiempos en las pausas internas ("...", ".", "?", ":"). Hay que revisar que la cantidad de frases coincida y que la velocidad sea pareja (13–18 caracteres por segundo).
 
 ## 8. Formato y render
