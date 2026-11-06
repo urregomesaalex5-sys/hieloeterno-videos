@@ -9,6 +9,8 @@ Regla: **cada capítulo nuevo tiene que mejorar al menos una cosa concreta** res
 - Nada de [whispers] ni partes bajitas en la voz; no rebotar todo el tiempo (energía solo en momentos clave); nada de preguntas bobas en el comentario.
 - Regla de exactitud: cero información falsa; todo sale de VERIFICACION.md con fuentes buenas.
 
+- Cap. 9 (relé), 5 nov 2026: "Aprobado, me encantó". Le gustaron los planos cercanos (zoom al relé por dentro, a los contactos y al relé #70) y el gancho del botoncito + reflector.
+
 ## Lo que funcionó en el cap. 8 (repetir)
 - Gancho con acción física real en el segundo 0,45 con la luz ya prendida (tirón al interruptor + destello).
 - Repetir la demo del gancho más adelante para explicarla ("¡eso prendió el neón!").
@@ -20,4 +22,4 @@ Regla: **cada capítulo nuevo tiene que mejorar al menos una cosa concreta** res
 | Cap. | Tema | Calificación de Edwin | Mejora de este capítulo | Qué mejorar en el siguiente |
 |---|---|---|---|---|
 | 8 | Inductor | "perfecto" | Primer capítulo 100 % automático (voz generada y descargada sola) | Bajar a 60–70 s si el analista ve caída de retención; más planos cercanos del componente |
-| 9 | Relé | (pendiente) | Planos cercanos: zoom al relé por dentro, a los contactos en el ¡CLIC! y al relé #70 de la Mark II; sonido de relé hecho a mano y usado como hi-hat de la música. Control de calidad: 8/10 antes de arreglos (se corrigieron 7 fallas y se volvió a renderizar) | Duración 81 s: apuntar a 70–75 s (la frase del bicho dura 10,7 s; partirla o acortarla); que el personaje no tape los planos cercanos (correrlo a la derecha o hacerlo más chico en esos momentos) |
+| 9 | Relé | "Aprobado, me encantó" (5 nov 2026, noche) | Planos cercanos: zoom al relé por dentro, a los contactos en el ¡CLIC! y al relé #70 de la Mark II; sonido de relé hecho a mano y usado como hi-hat de la música. Control de calidad: 8/10 antes de arreglos (se corrigieron 7 fallas y se volvió a renderizar) | Duración 81 s: apuntar a 70–75 s (la frase del bicho dura 10,7 s; partirla o acortarla); que el personaje no tape los planos cercanos (correrlo a la derecha o hacerlo más chico en esos momentos) |
