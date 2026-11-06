@@ -20,3 +20,4 @@ Regla: **cada capítulo nuevo tiene que mejorar al menos una cosa concreta** res
 | Cap. | Tema | Calificación de Edwin | Mejora de este capítulo | Qué mejorar en el siguiente |
 |---|---|---|---|---|
 | 8 | Inductor | "perfecto" | Primer capítulo 100 % automático (voz generada y descargada sola) | Bajar a 60–70 s si el analista ve caída de retención; más planos cercanos del componente |
+| 9 | Relé | (pendiente) | Planos cercanos: zoom al relé por dentro, a los contactos en el ¡CLIC! y al relé #70 de la Mark II; sonido de relé hecho a mano y usado como hi-hat de la música. Control de calidad: 8/10 antes de arreglos (se corrigieron 7 fallas y se volvió a renderizar) | Duración 81 s: apuntar a 70–75 s (la frase del bicho dura 10,7 s; partirla o acortarla); que el personaje no tape los planos cercanos (correrlo a la derecha o hacerlo más chico en esos momentos) |
