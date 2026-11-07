@@ -58,3 +58,12 @@
 - **Gestos nuevos:** visera con la mano (luz), taparse los oídos en el ¡CLIC! y en el pito, agarrarse la barriga de la risa.
 - **Música:** clic de relé + acorde grande de encendido; groove a 108 BPM (Em9–Cmaj7–G6–D6sus) con hi-hat de clics de relé, pad conmutado todo-o-nada y marimba que salta entre dos notas (NA/NC).
 - **Sonido nuevo:** `relay_click` en sfx.py (golpe de armadura + tic de contactos con 2 rebotes; versión "off" más liviana).
+
+## Cap. 10 · El transformador (7 nov 2026)
+- **Intro:** laboratorio en PENUMBRA con el título en pantalla; tomacorriente en la pared, transformador (marco de hierro + 2 bobinas) sobre el mesón y bombillo conectado solo a la bobina 2. Mete el ENCHUFE a los 0,45 s: ¡ZAS!, zumbido, el bombillo prende y el cuarto se ilumina; línea roja punteada "✗ NO SE TOCAN". En la promesa sale un poste chiquito "AL FINAL: EL DEL POSTE".
+- **Demos:** transformador grande lanzado (BOBINA 1 / BOBINA 2 / NÚCLEO DE HIERRO); gráfica de onda alterna con punto que la recorre + cuadritos de corriente que suben y bajan; flechitas de campo que dan la vuelta por el hierro y cambian de sentido; PLANO CERCANO a la esquina del hierro ("EL HIERRO LLEVA EL CAMPO → A LA BOBINA 2"); "¡VOLTAJE!" + bobina "CAP. 8 · INDUCTOR"; voltímetros amarillos ENTRA/SALE con 8→16→4 vueltas (6 V~ → 12 V~ → 3 V~, bursts DOBLE / MITAD); sello NO ES MAGIA + "VOLTAJE ↑ / CORRIENTE ↓"; pila grande con gráfica PULSITO → NADA + "✗ NO FUNCIONA"; poste de concreto con transformador gris (kVA), chispitas en los cables, casita que prende "120 V"; PLANO CERCANO al tanque con ondas "MMMMMM" y lupa sobre láminas que se estiran.
+- **Cierre:** reto con el símbolo del transformador "120 V → ?" y "OTRA BOBINA: MITAD DE VUELTAS".
+- **Gestos nuevos:** meter el enchufe; modo esquina (se encoge y se corre en los planos cercanos).
+- **Música:** zumbido de 120 Hz + acorde de La menor; groove a 100 BPM (Am9–Fmaj7–Cmaj7–G6) con eco inducido (marimba izquierda → campanita una octava arriba a la derecha) y bajo alterno abajo-arriba.
+- **Dibujos nuevos:** trafo.py (transformador, flujo, tomacorriente, enchufe, onda alterna, pulso, pila D, voltímetro, poste, casa, láminas, símbolo).
+
