@@ -50,3 +50,11 @@
 - **Cierre:** reto con dos bobinas N y 2N vueltas "¿×2 o ×4?".
 - **Música:** zumbido de bobina de 100 Hz hasta el ¡zing! del neón; groove a 94 BPM (Gm9–Ebmaj7–Cm9–D7sus4) con pad de ataque lento que se queda sonando tras el cambio y bajo con portamento.
 - **Gestos nuevos:** mano de "alto" en "se opone", empujar el carrito, manos al pecho en "¡Gracias!".
+
+## Cap. 9 · El relé (6 nov 2026)
+- **Intro:** laboratorio en PENUMBRA con el título en pantalla; tablerito verde con botoncito rojo de 5 V → relé azul → cable grueso a un REFLECTOR gigante en trípode. Aprieta el botón a los 0,4 s: ¡CLIC! (burbuja de cómic), destello blanco, cono de luz y el cuarto se prende; hace visera con la mano. Una polilla vuela alrededor del reflector en la promesa.
+- **Demos:** el relé azul (SRD-05VDC-SL-C) cae lanzado, la tapa sale volando y queda el CORTE (bobina, núcleo, yugo, armadura, resorte, contactos NC/NA/COM); corriente en cuadritos, "¡IMÁN!", la armadura baja con ¡CLIC!; PLANO CERCANO (zoom) a los contactos que sueltan y vuelven a cerrar ("METAL CONTRA METAL"); resorte que la devuelve con rebote; medidores 71 mA vs 10 A con bombillo grande y línea roja punteada "AISLADOS · 1.500 V"; gráfica voltaje–tiempo con PICO rojo y traza verde "CON DIODO" + diodo que cae en paralelo con la bobina + neón "CAP. 8"; frente de carro rojo con farolas y ¡PIII! + esquema botón (cable delgado) → relé → cable grueso batería → luces; panel "MARK II · PANEL F" con zoom al relé #70, polilla que entra volando y queda atrapada, cuaderno "9/9/47 · Relay #70 Panel F" con la polilla pegada con cinta y "First actual case of bug being found."; sello "LA PALABRA YA EXISTÍA" + "¡CHISTE!"; símbolo del relé que conmuta + "IMÁN + INTERRUPTOR".
+- **Cierre:** reto con el símbolo del relé tapado con "?": "RELÉ APAGADO · ¿COM → NA o NC?".
+- **Gestos nuevos:** visera con la mano (luz), taparse los oídos en el ¡CLIC! y en el pito, agarrarse la barriga de la risa.
+- **Música:** clic de relé + acorde grande de encendido; groove a 108 BPM (Em9–Cmaj7–G6–D6sus) con hi-hat de clics de relé, pad conmutado todo-o-nada y marimba que salta entre dos notas (NA/NC).
+- **Sonido nuevo:** `relay_click` en sfx.py (golpe de armadura + tic de contactos con 2 rebotes; versión "off" más liviana).
