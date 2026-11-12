@@ -67,3 +67,11 @@
 - **Música:** zumbido de 120 Hz + acorde de La menor; groove a 100 BPM (Am9–Fmaj7–Cmaj7–G6) con eco inducido (marimba izquierda → campanita una octava arriba a la derecha) y bajo alterno abajo-arriba.
 - **Dibujos nuevos:** trafo.py (transformador, flujo, tomacorriente, enchufe, onda alterna, pulso, pila D, voltímetro, poste, casa, láminas, símbolo).
 
+## Cap. 11 · El motor DC (12 nov 2026, hecho en la nube)
+- **Intro:** laboratorio YA prendido con el título en pantalla; pila AA de pie y motorcito de juguete con hélice sobre el mesón. A los 0,45 s toca el + de la pila con el cable: ¡ZUUM!, la hélice arranca (se vuelve disco borroso), sopla y salen volando 4 papeles; la lámpara se mece con el viento. Promesa: control de videojuego chiquito que tiembla "AL FINAL: EL DEL CONTROL".
+- **Demos:** motor por dentro visto de frente (imanes N rojo / S azul curvos, campo en flechitas, bobina vista de punta con ⊙/⊗); un solo alambre con ⊙ y flecha "¡EMPUJÓN!"; empujón arriba en un lado y abajo en el otro → "¡GIRA!"; sin conmutador oscila y queda derecha ("SE QUEDA QUIETA"); conmutador de anillo partido (mitades A/B) con escobillas +/− en cámara lenta, contador "MEDIA VUELTA #n" con flash; "↺ SIEMPRE AL MISMO LADO"; la pila salta y se voltea → "↻ ¡AL REVÉS!"; control con ventana al motorcito de pesa de media luna que gira y lo sacude; manivela que gira el motor y prende un LED ("GIRADO A MANO = GENERADOR") + molino "CAP. 2 · EL MOLINO".
+- **Cierre:** reto con tarjeta (imanes volteados S|N + pila volteada + "?"): "¿PARA DÓNDE GIRA? ↺ o ↻". Respuesta: al mismo lado que al principio.
+- **Gestos:** visera en el ¡ZUUM!, agarrarse la barriga de la risa en "tiembla", caminar hasta la manivela.
+- **Música:** ZUUM de arranque (60→260 Hz) + acorde de Re; groove a 112 BPM (Dmaj9–Bm9–Gmaj7–A6sus) con un arpegio que da la vuelta por el estéreo y se invierte cada medio compás (el conmutador).
+- **Dibujos nuevos:** motor.py (motorcito con hélice, motor por dentro, conmutador, pila acostada, control con motor de pesa, manivela, molino, tarjeta del reto).
+

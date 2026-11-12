@@ -13,6 +13,8 @@ Cada frase del guion sale de un código M#. HECHO = respaldado por fuentes; ANAL
 | M7 | Muchos controles de videojuego vibran con un motor DC con una masa descentrada (ERM): al girar, la masa desbalanceada sacude todo. No todos: algunos usan actuadores lineales; por eso se dice "en muchos". | HECHO | Makeability Lab (U. Washington) "Lesson 4: Vibromotors" (ERM en celulares y controles); patentes US 6693622 (motor DC con masa excéntrica en un gamepad) y US 6268671. |
 | M8 | Si se gira un motor DC con la mano, funciona como generador y da voltaje (campo que cambia en la bobina → voltaje, cap. 8). El molino del cap. 2 usaba un motor DC como generador. | HECHO | Vedantu / Wikipedia "Commutator": el mismo conmutador hace de rectificador en el generador DC; cap. 2 del canal (molino eólico con motor DC). |
 
+| M9 | (Dato extra del primer comentario) El 3 de septiembre de 1821 Faraday hizo girar un alambre con corriente alrededor de un imán, en un recipiente con mercurio ("rotaciones electromagnéticas"); la Royal Institution lo llama el primer motor eléctrico. | HECHO | Royal Institution "The birth of electric motion" y ficha del aparato de 1822 (rigb.org); Nature Physics editorial "Round and round it goes" (2021). |
+
 ## Lo que se dejó por fuera (PENDIENTE o innecesario)
 - Fuerza contraelectromotriz y por qué el motor consume más al arrancar: cierto, pero no cabe bien en 75 s.
 - Motores sin escobillas (brushless) de drones y ventiladores de PC: otro capítulo.

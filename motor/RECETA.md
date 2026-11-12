@@ -160,3 +160,12 @@ Reglas para la intro:
 - Si los silencios de `[long pause]` salen casi iguales a las pausas internas, usar `segment_dp.py` (reparte las frases a velocidad pareja).
 - Para agregar una frase nueva después de grabar: generarla sola (~80 créditos) y pegarla con `insert_phrase.py`.
 - Las pausas entre frases se recortan al 70 % en timeline.py.
+
+## 13. Hecho en la nube, sin el PC (desde el cap. 11, 12 nov 2026)
+- La tarea nocturna "Oficina HieloEterno nocturna (nube, sin PC)" corre en la nube de Claude: clona el repo, anima y renderiza ahí (python3, Pillow, numpy, scipy, ffmpeg ya instalados; render de 70 s en ~1 min).
+- La red de la nube solo deja GitHub y los paquetes: la voz de ElevenLabs (elevenlabsusercontent.com) da 403. Dos rutas:
+  - **Ruta A (ideal):** si en la red del entorno de la tarea se permite el dominio `elevenlabsusercontent.com`, se baja la voz con curl y todo sigue como antes, 100 % automático.
+  - **Ruta B (la que funcionó en el cap. 11):** el audio se trabaja en el sandbox de ElevenLabs (`creative_execute_sandbox`): se le pasan segment.py, segment_dp.py y timeline.py en base64, corta la voz, arma voice_track.wav y devuelve los cortes y la envolvente de la boca (25 Hz, texto). En la nube se escriben voice_cuts.json y mouth_env_voz.npy, se renderiza SIN voz (render.py usa mouth_env_voz.npy) y se sube a GitHub. `creative_attach_reference_file` trae ese mp4 desde raw.githubusercontent.com al flow y el sandbox le suma la voz y normaliza a −16 LUFS.
+  - Limitación de la ruta B: el video final queda en ElevenLabs sin enlace público, así que Edwin lo baja y lo adjunta en el chat para subirlo al repo y programarlo en Metricool.
+- ⚠️ Metricool: el cap. 10 en YouTube falló con "You have reached your Metricool account limit".
+
