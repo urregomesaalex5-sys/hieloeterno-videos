@@ -17,7 +17,7 @@ W, H = 1080, 1920
 os.makedirs('out', exist_ok=True)
 
 
-def base(ray_col=(140, 255, 200), seed=4):
+def base(ray_col=(140, 255, 200), seed=4, deco=6):
     img = LB.layers()['full'].copy()
     img = Image.fromarray((np.array(img.convert('RGB'), np.float32) * 0.78).astype(np.uint8)).convert('RGBA')
     rays = Image.new('RGBA', (W, H), (0, 0, 0, 0))
@@ -32,7 +32,7 @@ def base(ray_col=(140, 255, 200), seed=4):
     d.rectangle([0, 0, W, S.ROOM_T], fill=(30, 18, 8))
     d.rectangle([0, S.FLOOR_B, W, H], fill=(30, 18, 8))
     r = random.Random(seed)
-    for k in range(6):
+    for k in range(deco):
         x = r.choice([r.uniform(60, 170), r.uniform(910, 1020)]); y = r.uniform(600, 1300)
         S.paste_center(img, M.toy_motor(80), x, y, angle=r.uniform(-0.6, 0.6))
     return img
@@ -156,7 +156,7 @@ def spin_arrows(img, x, y, r=330):
 
 def v_a():
     """estilo portada A: ¿CÓMO FUNCIONA UN MOTOR? + el motor por dentro gigante brillando + personaje sorprendido"""
-    img = base((255, 190, 110), 4)
+    img = base((255, 190, 110), 4, deco=0)
     sparks(img, 540, 930, 380, 14)
     spin_arrows(img, 540, 930, 360)
     big_motor(img, 540, 930, 1.45)
@@ -172,7 +172,12 @@ def v_b():
     S.glow_fast(img, 600, 900, 330, (255, 200, 120), 0.8)
     S.paste_center(img, M.toy_motor(190), 600, 1000, scale=1.5)
     S.paste_center(img, M.propeller(0.4, 14, 360), 600, 745, scale=1.6)
-    S.paste_center(img, I.battery_aa(220), 300, 1000, scale=1.3, angle=0.1)
+    l = D.L(W, H)
+    for col, pts in (((220, 60, 60), [(300, 830), (300, 790), (470, 790), (470, 1135), (560, 1135)]),
+                     ((30, 30, 34), [(300, 1150), (300, 1175), (650, 1175), (650, 1140)])):
+        l.line(pts, (20, 20, 24, 255), 16); l.line(pts, col + (255,), 9)
+    img.alpha_composite(l.done())
+    S.paste_center(img, I.battery_aa(220), 300, 1000, scale=1.3)
     S.paste_center(img, S.fancy_text('¿POR QUÉ', 110, top=(255, 255, 255), bot=(210, 215, 230), outline=(30, 30, 40)), 540, 380, angle=-0.02)
     S.paste_center(img, S.fancy_text('GIRA SOLO?', 130, **ORANGE), 540, 520, angle=0.02)
     S.paste_center(img, S.fancy_text('EL MOTOR', 70, top=(170, 225, 255), bot=(40, 120, 230), outline=(8, 24, 70)), 540, 630)

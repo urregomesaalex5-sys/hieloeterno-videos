@@ -257,7 +257,7 @@ def battery_h(w=260, flipped=False):
             l.rect([x0 + w * 0.2, y0, x0 + w * 0.34, y0 + h], fill=(214, 168, 60, 255))
             l.text((x0 + w * 0.17, y0 + h / 2), '+', int(h * 0.5), fill=(60, 40, 10))
             l.text((x0 + w * 0.88, y0 + h / 2), '−', int(h * 0.45), fill=(220, 220, 225))
-        l.text((x0 + w * 0.45, y0 + h / 2), '1,5V', int(h * 0.36), fill=(240, 240, 245))
+        l.text((x0 + w * (0.62 if flipped else 0.45), y0 + h / 2), '1,5V', int(h * 0.36), fill=(240, 240, 245))
         l.rect([x0 + 10, y0 + 6, x0 + w - 10, y0 + 12], fill=(255, 255, 255, 40))
         return l.done()
     return cached(key, mk)

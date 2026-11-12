@@ -632,18 +632,19 @@ def draw_H(cv, t, at=None):
     on = 1.0 if t >= T_PLUG else 0.0
     bat = I.battery_aa(220)
     t1, t2 = M.toy_motor_terms(*MOT_C, MOT_W)
-    l = D.L(W, 500); oy = 800
-    # cable del − de la pila a la terminal 1 del motor (por el mesón)
-    for wcol, ww in (((30, 30, 36), 11), ((60, 64, 72), 6)):
-        l.line([(BAT_C[0], BAT_C[1] + 118 - oy), (BAT_C[0], 1146 - oy), (t1[0], 1146 - oy), (t1[0], t1[1] - oy)], wcol + (255,), ww)
-    # cable de la terminal 2 a la mano (o al + de la pila)
+    l = D.L(W, 1000); oy = 500
+    # cable negro: del − de la pila (abajo) a la terminal izquierda del motor, por el mesón
+    for wcol, ww in (((20, 20, 24), 11), ((60, 64, 72), 6)):
+        l.line([(BAT_C[0], 1146 - oy), (t1[0], 1146 - oy), (t1[0], t1[1] - 4 - oy)], wcol + (255,), ww)
+    # cable rojo: de la terminal derecha, por detrás del motor y por arriba, hasta la mano (o al + de la pila)
     if t < T_PLUG:
         hx, hy = hand_pos(t, 'l')
         pp = (hx + 8, hy)
     else:
         pp = (BAT_C[0], BAT_C[1] - 122)
+    xr_ = MOT_C[0] + 150
     for wcol, ww in (((150, 30, 30), 11), ((220, 60, 60), 6)):
-        l.line([(t2[0], t2[1] - oy), (t2[0] + 40, 1146 - oy), (BAT_C[0] + 70, 1146 - oy), (BAT_C[0] + 70, pp[1] - 40 - oy), (pp[0], pp[1] - oy)], wcol + (255,), ww)
+        l.line([(t2[0], t2[1] - 4 - oy), (xr_, t2[1] - 4 - oy), (xr_, 740 - oy), (BAT_C[0] + 60, 740 - oy), (BAT_C[0] + 60, pp[1] - 50 - oy), (pp[0], pp[1] - oy)], wcol + (255,), ww)
     cv.alpha_composite(l.done(), (0, oy))
     S.paste_center(cv, bat, BAT_C[0], BAT_C[1])
     # papeles que salen volando con el viento
@@ -668,7 +669,7 @@ def draw_H(cv, t, at=None):
         S.paste_center(cv, burst('¡ZUUM!', 42), MOT_C[0] + 60, MOT_C[1] - 330, scale=a, angle=0.1)
         S.glow_fast(cv, BAT_C[0], BAT_C[1] - 120, 70, (255, 240, 180), 0.8 * (1 - S.seg(t, T_PLUG, T_PLUG + 0.3)))
     lbl(cv, 'PILA', BAT_C[0], BAT_C[1] - 190, pop_in(t, Hh['l_pila']), (255, 230, 150), 26)
-    lbl(cv, 'IMÁN + ALAMBRE (ADENTRO)', MOT_C[0] - 40, MOT_C[1] + 30, pop_in(t, Hh['l_iman']), (150, 220, 255), 22)
+    lbl(cv, 'IMÁN + ALAMBRE (ADENTRO)', 640, 690, pop_in(t, Hh['l_iman']), (150, 220, 255), 22)
     if t >= Hh['promise']:
         a = pop_in(t, Hh['promise']) * (1 - S.seg(t, T_H_SLAP - 0.3, T_H_SLAP))
         jit = 4 * math.sin(t * 60) if t >= Hh['promise'] + 0.3 else 0
@@ -759,7 +760,7 @@ def draw_R(cv, t, at=None):
         lbl(cv, '⊙ CORRIENTE SALE HACIA TI', R_C[0], R_C[1] + 270, pop_in(t, Rr['cur']), (255, 230, 140), 26)
         lbl(cv, 'CAMPO DEL IMÁN →', R_C[0], R_C[1] - 205, pop_in(t, Rr['campo']), (120, 210, 255), 26)
         if t >= Rr['push']:
-            S.paste_center(cv, burst('¡EMPUJÓN!', 34), R_C[0] + 230, R_C[1] - 120, scale=S.ease_back(S.seg(t, Rr['push'], Rr['push'] + 0.2)), angle=0.08)
+            S.paste_center(cv, burst('¡EMPUJÓN!', 34), R_C[0] - 140, R_C[1] - 120, scale=S.ease_back(S.seg(t, Rr['push'], Rr['push'] + 0.2)), angle=0.08)
     if Rr['both'] <= t < Rr['derecha']:
         lbl(cv, 'UN LADO ↑   EL OTRO ↓', R_C[0], R_C[1] + 270, pop_in(t, Rr['up']), (255, 230, 140), 28)
         if t >= Rr['gira']:
@@ -860,7 +861,9 @@ def draw_C(cv, t, at=None):
         rot = math.pi * S.ease_io(S.seg(t, Cc['flip'], Cc['flip'] + 0.35))
         hop = 120 * math.sin(math.pi * S.seg(t, Cc['flip'], Cc['flip'] + 0.35))
         S.paste_center(cv, M.battery_h(230), C_BAT[0], C_BAT[1] - hop, angle=rot, scale=pop_in(t, Cc['in'] + 0.2))
-    lbl(cv, 'CONMUTADOR', C_CO[0], C_CO[1] - 175, pop_in(t, Cc['conm']), (255, 210, 120), 30)
+        if t >= Cc['flip'] + 0.35:
+            lbl(cv, 'PILA VOLTEADA', C_BAT[0], C_BAT[1] - 75, pop_in(t, Cc['flip'] + 0.35), (255, 230, 150), 22)
+    lbl(cv, 'CONMUTADOR', C_CO[0], C_CO[1] - 175, pop_in(t, Cc['conm']) * (1 - S.seg(t, Cc['mismo'] - 0.3, Cc['mismo'] - 0.1)), (255, 210, 120), 30)
     lbl(cv, 'ESCOBILLA', C_CO[0] - 250, C_CO[1] + 75, pop_in(t, Cc['conm'] + 0.15) * (1 - S.seg(t, Cc['spin'] + 1.5, Cc['spin'] + 1.8)), (210, 210, 220), 22)
     lbl(cv, 'ESCOBILLA', C_CO[0] + 250, C_CO[1] + 75, pop_in(t, Cc['conm'] + 0.25) * (1 - S.seg(t, Cc['spin'] + 1.5, Cc['spin'] + 1.8)), (210, 210, 220), 22)
     if t >= Cc['spin']:
@@ -871,9 +874,9 @@ def draw_C(cv, t, at=None):
             S.paste_center(cv, D.label(f'MEDIA VUELTA #{n}: ¡CAMBIA LA CORRIENTE!', 26, fill=(255, 235, 150)), C_MI[0], 330, scale=0.85 + 0.15 * k)
         lbl(cv, 'CÁMARA LENTA', 930, 640, 1.0 if t < Cc['flip'] else 1 - S.seg(t, Cc['flip'], Cc['flip'] + 0.2), (200, 200, 210), 20)
     if Cc['mismo'] <= t < Cc['flip']:
-        S.paste_center(cv, S.fancy_text('↺ SIEMPRE AL MISMO LADO', 46, top=(170, 255, 200), bot=(30, 170, 110), outline=(5, 50, 30)), 640, 690, scale=pop_in(t, Cc['mismo']))
+        S.paste_center(cv, S.fancy_text('SIEMPRE AL MISMO LADO', 46, top=(170, 255, 200), bot=(30, 170, 110), outline=(5, 50, 30)), 640, 690, scale=pop_in(t, Cc['mismo']))
     if t >= Cc['reves']:
-        S.paste_center(cv, S.fancy_text('↻ ¡AL REVÉS!', 60, top=(255, 200, 170), bot=(230, 80, 50), outline=(70, 15, 5)), 640, 690, scale=pop_in(t, Cc['reves']))
+        S.paste_center(cv, S.fancy_text('¡AL REVÉS!', 64, top=(255, 200, 170), bot=(230, 80, 50), outline=(70, 15, 5)), 640, 690, scale=pop_in(t, Cc['reves']))
 
 C_THROW = []
 
@@ -930,7 +933,7 @@ def draw_V(cv, t, at=None):
         gx = V_C[0] - V_W * 0.3 + dx; gy = V_C[1] + V_W * 0.62 * 0.12 + dy
         lbl(cv, 'PESA A UN LADO', gx + 40, gy + 205, pop_in(t, Vv['pesa']), (255, 230, 140), 28)
     if t >= Vv['tiembla']:
-        S.paste_center(cv, burst('¡TIEMBLA!', 40), V_C[0] + 200, V_C[1] - 200, scale=S.ease_back(S.seg(t, Vv['tiembla'], Vv['tiembla'] + 0.2)), angle=0.1)
+        S.paste_center(cv, burst('¡TIEMBLA!', 40), V_C[0] + 250, V_C[1] + 230, scale=S.ease_back(S.seg(t, Vv['tiembla'], Vv['tiembla'] + 0.2)), angle=0.1)
 
 V_THROW = []
 
