@@ -2,6 +2,11 @@
 
 Las escribe el 📊 analista y el ✍️ guionista las lee antes de escribir cada guion. Se actualizan después de cada informe.
 
+## Nuevas (informe del 13 nov 2026, últimos 14 días)
+1. **El gancho sigue fallando a medias en Instagram.** View rate >3 s: cap. 10 transformador 57 % y cap. 8 inductor 50 % (bajo 60 %); en cambio cap. 4 diodo 69 %, cap. 7 resistencia 62 % y cap. 9 relé 61 %. Los que ganan abren con un objeto de la vida diaria que hace algo fuerte en el segundo 0 (LED que se quema, ¡clic! + reflector). Abrir con sonido + luz/movimiento, no con un diagrama.
+2. **Tiempo visto = 11-19 s en videos de 70-80 s (15-25 %, todo bajo el 30 %).** El mejor fue el relé (18,8 s). La gente se va hacia el segundo 10-15: poner un mini gancho fuerte en el segundo 8-10 ("pero aquí viene lo raro…") y soltar la primera respuesta real antes del segundo 15.
+3. **Repetir la fórmula del relé:** componente que se oye y se ve (planos cercanos por dentro), apuntar a 60-65 s. El altavoz encaja perfecto (suena, vibra, se ve el cono).
+
 ## Vigentes (desde los informes del 2 y 3 nov 2026)
 
 ### Lo que dicen los números
