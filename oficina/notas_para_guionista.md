@@ -2,12 +2,17 @@
 
 Las escribe el 📊 analista y el ✍️ guionista las lee antes de escribir cada guion. Se actualizan después de cada informe.
 
-## Nuevas (informe del 17 nov 2026, últimos 14 días)
+## Nuevas (informe del 18 nov 2026, últimos 14 días)
+1. **Primero que el video salga.** 6 días sin publicar: el motor sigue sin YouTube ni TikTok. YouTube llegó a 100 suscriptores (17 nov) pero está frenado. Sin cupo en Metricool no hay cap. 12.
+2. **Título-pregunta arriba, siempre.** Motor a mano sin "¿Cómo funciona un X?": 209 vistas y 37,5 %; con título-pregunta: 1.200-1.500.
+3. **Altavoz listo para el cap. 12:** gancho con el celular mojado "escupiendo" gotas al sonar en el segundo 0, primera respuesta antes del segundo 12, 60-65 s.
+
+## Anteriores (informe del 17 nov 2026, últimos 14 días)
 1. **Primero que el video salga.** 5 días sin publicar: el motor sigue sin YouTube ni TikTok, y YouTube está quieto en 99 suscriptores. Sin cupo en Metricool no hay cap. 12. PUBLICACION.md con textos listos para pegar a mano.
 2. **Título-pregunta arriba, siempre.** Motor a mano sin "¿Cómo funciona un X?": 208 vistas y 37,7 %; con título-pregunta: 1.200-1.500.
 3. **Gancho del altavoz listo:** abrir con el celular mojado "escupiendo" gotas al sonar (ruido + movimiento en el segundo 0) y responder antes del segundo 12. Apuntar a 60-65 s.
 
-## Anteriores (informe del 16 nov 2026, últimos 14 días)
+## Más viejas (informe del 16 nov 2026, últimos 14 días)
 1. **Primero que el video salga.** Con Metricool sin cupo, el cap. 11 solo está en Instagram y el canal lleva 4 días quieto (YouTube 99 suscriptores, frenado). Dejar en PUBLICACION.md los textos listos para copiar y pegar en las 3 redes, por si toca subir a mano.
 2. **Título-pregunta arriba, siempre.** El motor subido a mano sin "¿Cómo funciona un X?" hizo 206 vistas y 37,6 % de view rate; los que llevan el título-pregunta hacen 1.200-1.500.
 3. **Gancho = objeto diario + ruido/luz antes del segundo 1, y primera respuesta antes del segundo 12.** Ganan resistencia 62 % y relé 60,5 %; el tiempo visto sigue en 6-19 s. Apuntar a 60-65 s. El altavoz sigue primero en la fila.
