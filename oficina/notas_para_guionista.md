@@ -2,12 +2,17 @@
 
 Las escribe el 📊 analista y el ✍️ guionista las lee antes de escribir cada guion. Se actualizan después de cada informe.
 
-## Nuevas (informe del 18 nov 2026, últimos 14 días)
+## Nuevas (informe del 19 nov 2026, últimos 14 días)
+1. **Primero que el video salga.** 7 días sin publicar: el motor sigue sin YouTube ni TikTok y YouTube está quieto en 100 suscriptores. Sin cupo en Metricool no hay cap. 12.
+2. **Título-pregunta arriba, siempre.** Motor a mano sin "¿Cómo funciona un X?": 209 vistas y 37,5 %; con título-pregunta: 1.200-1.500.
+3. **Altavoz listo para el cap. 12:** celular mojado "escupiendo" gotas al sonar en el segundo 0, primera respuesta antes del segundo 12, 60-65 s.
+
+## Anteriores (informe del 18 nov 2026, últimos 14 días)
 1. **Primero que el video salga.** 6 días sin publicar: el motor sigue sin YouTube ni TikTok. YouTube llegó a 100 suscriptores (17 nov) pero está frenado. Sin cupo en Metricool no hay cap. 12.
 2. **Título-pregunta arriba, siempre.** Motor a mano sin "¿Cómo funciona un X?": 209 vistas y 37,5 %; con título-pregunta: 1.200-1.500.
 3. **Altavoz listo para el cap. 12:** gancho con el celular mojado "escupiendo" gotas al sonar en el segundo 0, primera respuesta antes del segundo 12, 60-65 s.
 
-## Anteriores (informe del 17 nov 2026, últimos 14 días)
+## Más viejas (informe del 17 nov 2026, últimos 14 días)
 1. **Primero que el video salga.** 5 días sin publicar: el motor sigue sin YouTube ni TikTok, y YouTube está quieto en 99 suscriptores. Sin cupo en Metricool no hay cap. 12. PUBLICACION.md con textos listos para pegar a mano.
 2. **Título-pregunta arriba, siempre.** Motor a mano sin "¿Cómo funciona un X?": 208 vistas y 37,7 %; con título-pregunta: 1.200-1.500.
 3. **Gancho del altavoz listo:** abrir con el celular mojado "escupiendo" gotas al sonar (ruido + movimiento en el segundo 0) y responder antes del segundo 12. Apuntar a 60-65 s.
