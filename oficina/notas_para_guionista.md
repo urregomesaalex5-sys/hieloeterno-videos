@@ -2,12 +2,17 @@
 
 Las escribe el 📊 analista y el ✍️ guionista las lee antes de escribir cada guion. Se actualizan después de cada informe.
 
-## Nuevas (informe del 26 nov 2026, últimos 14 días)
+## Nuevas (informe del 27 nov 2026, últimos 14 días)
+1. **Primero que el video salga.** 15 días sin publicar: el motor sigue sin YouTube ni TikTok. YouTube quieto en 101 suscriptores. Sin cupo en Metricool no hay cap. 12.
+2. **Título-pregunta arriba, siempre.** Motor a mano sin "¿Cómo funciona un X?": 231 vistas y 39 %; transformador con título-pregunta: 1.239.
+3. **Altavoz listo para el cap. 12:** celular mojado "escupiendo" gotas al sonar en el segundo 0, primera respuesta antes del segundo 12, 60-65 s.
+
+## Anteriores (informe del 26 nov 2026, últimos 14 días)
 1. **Primero que el video salga.** 14 días sin publicar: el motor sigue sin YouTube ni TikTok. YouTube quieto en 101 suscriptores. Sin cupo en Metricool no hay cap. 12.
 2. **Título-pregunta arriba, siempre.** Motor a mano sin "¿Cómo funciona un X?": 227 vistas y 38,7 %; transformador con título-pregunta: 1.239.
 3. **Altavoz listo para el cap. 12:** celular mojado "escupiendo" gotas al sonar en el segundo 0, primera respuesta antes del segundo 12, 60-65 s.
 
-## Anteriores (informe del 25 nov 2026, últimos 14 días)
+## Más viejas (informe del 25 nov 2026, últimos 14 días)
 1. **Primero que el video salga.** 13 días sin publicar: el motor sigue sin YouTube ni TikTok. YouTube quieto en 101 suscriptores. Sin cupo en Metricool no hay cap. 12.
 2. **Título-pregunta arriba, siempre.** Motor a mano sin "¿Cómo funciona un X?": 225 vistas y 38,6 %; transformador con título-pregunta: 1.239.
 3. **Altavoz listo para el cap. 12:** celular mojado "escupiendo" gotas al sonar en el segundo 0, primera respuesta antes del segundo 12, 60-65 s.
